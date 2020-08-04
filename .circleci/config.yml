@@ -1,0 +1,86 @@
+# PHP CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-php/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      # Specify the version you desire here
+      - image: circleci/php:7.3.9-fpm
+      - image: circleci/mysql:5.7
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - run:
+          name: setup
+          command: |
+              sudo apt update && sudo apt install -y mariadb-client libpng-dev libjpeg-dev zlib1g-dev
+              sudo docker-php-ext-configure gd --with-png-dir=/usr/include --with-jpeg-dir=/usr/include
+              sudo docker-php-ext-install zip pdo_mysql gd
+              sudo composer self-update
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            # "composer.lock" can be used if it is committed to the repo
+            - v1-dependencies-{{ checksum "composer.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run: composer install -n --prefer-dist
+
+      - save_cache:
+          key: v1-dependencies-{{ checksum "composer.json" }}
+          paths:
+            - ./vendor
+
+  build_image:
+    docker:
+      - image: docker:18.09.0
+
+    working_directory: ~/coin_lunch
+
+    steps:
+      - checkout
+      - setup_remote_docker
+
+      - run:
+          name: build image
+          command: |
+              docker build -t ${AWS_ECR_DOMAIN_APP}:latest -f ./docker/php/Dockerfile .
+              docker build -t ${AWS_ECR_DOMAIN_NGINX}:latest -f ./docker/nginx/Dockerfile .
+
+      - run:
+          name: add tag to this image
+          command: |
+              docker tag ${AWS_ECR_DOMAIN_APP}:latest ${AWS_ECR_ACCOUNT_URL}/${AWS_ECR_DOMAIN_APP}:latest
+              docker tag ${AWS_ECR_DOMAIN_NGINX}:latest ${AWS_ECR_ACCOUNT_URL}/${AWS_ECR_DOMAIN_NGINX}:latest
+
+      - run:
+          name: install aws cli
+          command: |
+              apk add --no-cache --update py-pip
+              pip install awscli
+
+      - run:
+          name: Push this image
+          command: |
+              $(aws ecr get-login --region ap-northeast-1 --no-include-email)
+              docker push ${AWS_ECR_ACCOUNT_URL}/${AWS_ECR_DOMAIN_APP}:latest
+              docker push ${AWS_ECR_ACCOUNT_URL}/${AWS_ECR_DOMAIN_NGINX}:latest
+
+workflows:
+  version: 2
+  test:
+      jobs:
+          - build
+          - build_image:
+              requires:
+                  - build
+              filters:
+                  branches:
+                      only: master
