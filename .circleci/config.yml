@@ -10,7 +10,7 @@ jobs:
       - image: circleci/php:7.3.9-fpm
       - image: circleci/mysql:5.7
 
-    working_directory: ~/repo
+    working_directory: ~/coin_lunch/app
 
     steps:
       - checkout
