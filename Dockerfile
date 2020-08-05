@@ -1,13 +1,10 @@
 FROM php:7.3-fpm-alpine
 
-COPY app /var/www/html
-COPY docker/php/php.ini /usr/local/etc/php/php.ini
-
-WORKDIR /var/www/html
+COPY ./app /var/www/html
+COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /composer
-
 
 RUN set -x && \
     apk update && \
@@ -18,3 +15,5 @@ RUN set -x && \
     chmod -R a+w storage/ bootstrap/cache
 
 RUN apk add --update nodejs nodejs-npm
+
+WORKDIR /var/www/html
