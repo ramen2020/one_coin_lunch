@@ -3,6 +3,10 @@
 # Check https://circleci.com/docs/2.0/language-php/ for more details
 #
 version: 2
+
+orbs:
+  aws-ecs: circleci/aws-ecs@1.2.0
+
 jobs:
   build:
     docker:
@@ -10,7 +14,7 @@ jobs:
       - image: circleci/php:7.3.9-fpm
       - image: circleci/mysql:5.7
 
-    working_directory: ~/coin_lunch/app
+    working_directory: ~/coin_lunch
 
     steps:
       - checkout
@@ -27,16 +31,16 @@ jobs:
       - restore_cache:
           keys:
             # "composer.lock" can be used if it is committed to the repo
-            - v1-dependencies-{{ checksum "composer.json" }}
+            - v1-dependencies-{{ checksum "./app/composer.json" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: composer install -n --prefer-dist
+      - run: composer install -n --prefer-dist --working-dir=./app
 
       - save_cache:
-          key: v1-dependencies-{{ checksum "composer.json" }}
+          key: v1-dependencies-{{ checksum "./app/composer.json" }}
           paths:
-            - ./vendor
+            - .app/vendor
 
   build_image:
     docker:
@@ -67,11 +71,44 @@ jobs:
               pip install awscli
 
       - run:
-          name: Push this image
+          name: login ecr
+          command: $(aws ecr get-login --region ap-northeast-1 --no-include-email)
+
+      - run:
+          name: push this image
           command: |
-              $(aws ecr get-login --region ap-northeast-1 --no-include-email)
               docker push ${AWS_ECR_ACCOUNT_URL}/${AWS_ECR_DOMAIN_APP}:latest
               docker push ${AWS_ECR_ACCOUNT_URL}/${AWS_ECR_DOMAIN_NGINX}:latest
+
+  deploy:
+    docker:
+      - image: circleci/python:3.7
+    steps:
+      - run:
+          name: install aws cli
+          command: sudo pip install awscli
+
+      - run:
+          name: download jq
+          command: |
+              wget https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
+              mv jq-linux64 jq
+
+      - run:
+          name: login ecr
+          command: $(aws ecr get-login --no-include-email --region ap-northeast-1)
+
+      - run:
+          name: output task definiton to a json
+          command: |
+              aws ecs describe-task-definition --task-definition one_coin_lunch --region ap-northeast-1 | jq '.taskDefinition | { containerDefinitions: .containerDefinitions }' > task.json
+      - run:
+          name: update task definition
+          command: aws ecs register-task-definition --family one_coin_lunch --region ap-northeast-1 --cli-input-json file://task.json
+
+      - run:
+          name: update service
+          command: aws ecs update-service --cluster one-coin-cluster --service one-coin-service --task-definition one_coin_lunch --region ap-northeast-1
 
 workflows:
   version: 2
@@ -81,6 +118,12 @@ workflows:
           - build_image:
               requires:
                   - build
+              filters:
+                  branches:
+                      only: master
+          - deploy:
+              requires:
+                  - build_image
               filters:
                   branches:
                       only: master
