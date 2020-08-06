@@ -15,5 +15,6 @@ RUN set -x && \
     chmod -R a+w storage/ bootstrap/cache
 
 RUN apk add --update nodejs nodejs-npm
+RUN npm install && npm run dev
 
 WORKDIR /var/www/html
