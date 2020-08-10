@@ -145,6 +145,22 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'store_name' => '店舗名',
+        'store_infomation' => '店舗情報',
+        'prefecture' => '都道府県',
+        'city' => '区市町村',
+        'street_address' => '番地など',
+        'image_name' => '画像',
+        'high_budget' => '上限価格',
+        'low_budget' => '下限価格',
+        'latitude' => '緯度',
+        'longitude' => '経度',
+        'category_id_1' => 'カテゴリ',
+        'category_id_2' => 'カテゴリ',
+        'category_id_3' => 'カテゴリ',
+        'category_id_4' => 'カテゴリ',
+        'category_id_5' => 'カテゴリ',
+    ],
 
 ];
