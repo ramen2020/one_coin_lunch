@@ -1,0 +1,8 @@
+.display-none {
+  display: none;
+}
+
+.required {
+  margin-left: 5px;
+  color: #ff6347;
+}
