@@ -19,6 +19,7 @@ class CreateRestaurantsTable extends Migration
             $table->unsignedInteger('status')->default(1)->comment('申請中:1、投稿済み:2');
             $table->string('store_name', 50)->comment('店舗名');
             $table->string('store_infomation', 500)->comment('店舗情報');
+            $table->string('address')->nullable()->comment('住所');
             $table->unsignedInteger('prefecture_id')->nullable()->comment('都道府県');
             $table->string('city')->nullable()->comment('区市町村');
             $table->string('street_address')->nullable()->comment('番地など');

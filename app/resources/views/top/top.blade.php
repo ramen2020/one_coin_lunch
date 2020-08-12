@@ -10,8 +10,8 @@
         <small>近くのワンコインランチを探そう</small>
     </h1>
 
-    {!! Form::open(['route' => 'restaurant.index', 'method' => 'GET', 'class' => 'input-group mb-5']) !!}
-        {!! Form::input('text', 'search', null, ['class' => 'border-secondary form-control', 'placeholder' => '店舗名とか...']) !!}
+    {!! Form::open(['route' => 'search.word', 'method' => 'GET', 'class' => 'input-group mb-5']) !!}
+        {!! Form::input('text', 'search', null, ['class' => 'border-secondary form-control', 'placeholder' => '店舗名とか場所とか...']) !!}
         {!! Form::button('検索', ['class' => 'btn input-group-append border-secondary', 'type' => 'submit'])!!}
     {!! Form::close() !!}
 
@@ -36,9 +36,7 @@
                                 {{ $restaurant['high_budget'] }}円~{{ $restaurant['low_budget'] }}円
                                 </p>
                                 <p>
-                                    {{ config('data.prefecture')[$restaurant['prefecture_id']] }}
-                                    {{ $restaurant['city'] }}
-                                    {{ $restaurant['street_address'] }}
+                                    {{ $restaurant['address'] }}
                                 </p>
                                 <div>
                                     @if(!empty($restaurant['category_id_1']))
