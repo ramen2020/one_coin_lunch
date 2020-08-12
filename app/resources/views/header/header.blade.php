@@ -40,9 +40,9 @@
                         ランチ検索
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                        <a class="dropdown-item" href="{{ route('restaurant.search') }}">絞り込む</a>
-                        <a class="dropdown-item" href="{{ route('restaurant.map') }}">地図で探す</a>
-                        <a class="dropdown-item" href="{{ route('restaurant.word') }}">ワード検索</a>
+                        <a class="dropdown-item" href='/filter'>絞り込む</a>
+                        <a class="dropdown-item" href='/map'>地図で探す</a>
+                        <a class="dropdown-item" href='/word'>ワード検索</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -53,8 +53,8 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
                         <a class="dropdown-item" href="{{ route('restaurant.create') }}">投稿申請</a>
                         <a class="dropdown-item" href="">投稿一覧</a>
-                        <a class="dropdown-item" href="">プロフィール詳細</a>
-                        <a class="dropdown-item" href="">プロフィール編集</a>
+                        <a class="dropdown-item" href="{{ route('user.myProfile') }}">プロフィール詳細</a>
+                        <a class="dropdown-item" href="{{ route('user.editMyProfile') }}">プロフィール編集</a>
                     </div>
                 </li>
             </ul>

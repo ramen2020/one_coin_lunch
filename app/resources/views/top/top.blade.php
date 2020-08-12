@@ -11,7 +11,7 @@
     </h1>
 
     {!! Form::open(['route' => 'search.word', 'method' => 'GET', 'class' => 'input-group mb-5']) !!}
-        {!! Form::input('text', 'search', null, ['class' => 'border-secondary form-control', 'placeholder' => '店舗名とか場所とか...']) !!}
+        {!! Form::input('text', 'word', null, ['class' => 'border-secondary form-control', 'placeholder' => '店舗名とか場所とか...']) !!}
         {!! Form::button('検索', ['class' => 'btn input-group-append border-secondary', 'type' => 'submit'])!!}
     {!! Form::close() !!}
 
