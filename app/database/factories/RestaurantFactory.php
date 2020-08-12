@@ -18,12 +18,15 @@ use Illuminate\Support\Str;
 */
 
 $factory->define(Restaurant::class, function (Faker $faker) {
+    $prefecture_id = $faker->numberBetween($min = 1, $max = 46);
+
     return [
         'user_id' => $faker->numberBetween($min = 1, $max = 5),
         'status' => $faker->numberBetween($min = 1, $max = 2),
         'store_name' => $faker->name,
         'store_infomation' => $faker->realText(100),
-        'prefecture_id' => $faker->numberBetween($min = 1, $max = 46),
+        'address' => config('data.prefecture')[$prefecture_id] .$faker->city .$faker->streetAddress,
+        'prefecture_id' => $prefecture_id,
         'city' => $faker->city,
         'street_address' => $faker->streetAddress,
         'image_name' => $faker->randomNumber() ."jpg",
