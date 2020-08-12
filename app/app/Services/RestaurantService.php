@@ -52,6 +52,8 @@ class RestaurantService
         $create_restaurant->status = 2;
         $create_restaurant->store_name = $request['store_name'];
         $create_restaurant->store_infomation = $request['store_infomation'];
+        $create_restaurant->address =
+            config('data.prefecture')[$request['prefecture']] .$request['city'] .$request['street_address'];
         $create_restaurant->prefecture_id = $request['prefecture'];
         $create_restaurant->city = $request['city'];
         $create_restaurant->street_address = $request['street_address'];
