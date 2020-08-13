@@ -41,7 +41,15 @@ Route::group(['prefix' => 'word'], function () {
     Route::get('/search', 'SearchController@word')->name('search.word');
 });
 
-
+// お問い合わせ
+Route::group(['prefix' => 'contact'], function () {
+    //入力ページ
+    Route::get('/', 'ContactController@index')->name('contact.index');
+    //確認ページ
+    Route::post('/confirm', 'ContactController@confirm')->name('contact.confirm');
+    //送信完了ページ
+    Route::post('/thanks', 'ContactController@thanks')->name('contact.thanks');
+});
 
 // twitter ログイン
 Route::get('login/twitter', 'Auth\TwitterLoginController@redirectToProvider')->name('login.twitter');
@@ -49,16 +57,6 @@ Route::get('auth/twitter/callback', 'Auth\TwitterLoginController@handleProviderC
 Route::get('auth/twitter/logout', 'Auth\TwitterController@logout');
 
 Route::group(['middleware' => 'auth'], function () {
-
-    // お問い合わせ
-    Route::group(['prefix' => 'contact'], function () {
-        //入力ページ
-        Route::get('/', 'ContactController@index')->name('contact.index');
-        //確認ページ
-        Route::post('/confirm', 'ContactController@confirm')->name('contact.confirm');
-        //送信完了ページ
-        Route::post('/thanks', 'ContactController@send')->name('contact.send');
-    });
 
     // ワンコインランチの店舗について
     Route::group(['prefix' => 'restaurant'], function () {
