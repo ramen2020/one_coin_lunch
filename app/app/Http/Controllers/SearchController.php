@@ -31,4 +31,12 @@ class SearchController extends Controller
         return response()->json(['marker' => $restaurants]);
     }
 
+    // グーグルアカウント作り直し、apiキー作って読み込む、お問い合わせも変える
+
+    // 絞り込み検索
+    public function filter(Request $request)
+    {
+        $restaurants = Restaurant::searchRestaurantsByfilter($request)->toArray();
+        return view('search.result', compact('restaurants'));
+    }
 }

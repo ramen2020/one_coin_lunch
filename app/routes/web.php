@@ -22,7 +22,7 @@ Route::group(['prefix' => 'filter'], function () {
     Route::get('/', function () {
         return view('search.filter');
     });
-    Route::get('/search', 'SearchController@word')->name('search.filter');
+    Route::get('/search', 'SearchController@filter')->name('search.filter');
 });
 
 // 地図検索
