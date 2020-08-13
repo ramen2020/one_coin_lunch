@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Restaurant;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class SearchService
@@ -43,4 +44,5 @@ class SearchService
     {
         return '%' . addcslashes($value, '\_%') . '%';
     }
+
 }

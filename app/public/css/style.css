@@ -6,3 +6,49 @@
   margin-left: 5px;
   color: #ff6347;
 }
+
+/* Google map */
+#map {
+  height: 80%;
+  width: 800px;
+  margin: auto;
+  margin-bottom: 80px;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.gmap-wrap {
+  max-width: 800px;
+  margin: auto;
+}
+
+.hukidashi {
+  width: 310px;
+  max-height: 700px;
+}
+
+.hukidashi-img {
+  width: 300px;
+  height: 300px;
+}
+
+@media screen and (max-width: 640px) {
+  #map {
+      width: 90%;
+  }
+  .hukidashi-img {
+      width: 180px;
+      height: 180px;
+  }
+
+  .hukidashi {
+      width: 180px;
+      max-height: 500px;
+  }
+
+}

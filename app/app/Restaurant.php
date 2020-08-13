@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Services\SearchService;
 
 class Restaurant extends Model
 {
@@ -27,5 +28,18 @@ class Restaurant extends Model
     public static function getRestaurantById($id) {
         return self::where(self::RESTAURANT_TABLE . '.id', $id)
             ->first();
+    }
+
+    public static function getRestaurantsByWord($words)
+    {
+        $restaurant_query = Restaurant::query();
+        $restaurant_query->where(self::RESTAURANT_TABLE . '.status', 2)
+            ->when($words, function ($query, $search) {
+                return SearchService::querySearchWord($query, $search);
+        });
+
+        $restaurants = $restaurant_query->get();
+
+        return $restaurants;
     }
 }

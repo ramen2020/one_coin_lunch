@@ -24,5 +24,11 @@ class SearchController extends Controller
         return view('search.result', compact('restaurants'));
     }
 
+    // Gmap検索
+    public function map()
+    {
+        $restaurants = Restaurant::getAllRestaurants();
+        return response()->json(['marker' => $restaurants]);
+    }
 
 }
