@@ -6,7 +6,7 @@
 
     <div class="row">
         <div class="col-lg-8 mb-4">
-            <h3 class="my-5">入力内容の確認</h3>
+            <h3 class="mb-5">入力内容の確認</h3>
             <p>以下でお間違いないでしょうか。</p>
             {{ Form::open(['route' => 'contact.thanks', 'method' => 'post']) }}
                 <div class="control-group form-group">

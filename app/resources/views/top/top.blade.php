@@ -6,9 +6,9 @@
 
 <div class="container">
 
-    <h1 class="mt-4 mb-3">ワンコインランチ
-        <small>近くのワンコインランチを探そう</small>
-    </h1>
+    <h4 class="mt-4 mb-3">
+        近くのワンコインランチを探そう
+    </h4>
 
     {!! Form::open(['route' => 'search.word', 'method' => 'GET', 'class' => 'input-group mb-5']) !!}
         {!! Form::input('text', 'word', null, ['class' => 'border-secondary form-control', 'placeholder' => '店舗名とか場所とか...']) !!}
@@ -22,12 +22,18 @@
         </div>
 
         <div class="col-lg-9">
-            <h2>新着投稿一覧</h2>
-            <div class="row">
+            <div class="category mb-5">
+                    @include('top.category')
+            </div>
+            <div class="cate">
+                <div class="row">
+
+                <!-- 新着一覧 -->
+                <h2 class="border-bottom col-lg-12 my-3">新着投稿一覧</h2>
                 @foreach($restaurants as $restaurant)
-                    <div class="col-lg-4 mb-2">
+                    <div class="col-lg-4 mt-2">
                         <div class="card h-100">
-                            <a href="{{ $restaurant['image_name'] }}"><img class="card-img-top" src="" alt="700❌400"></a>
+                            <a href="{{ $restaurant['image_name'] }}"><img class="card-img-top" src="image/morning-brew-eFSUPUeYs3w-unsplash.jpg" alt="700❌400"></a>
                             <div class="card-body">
                                 <h4>
                                     <a href="/restaurant/show/{{ $restaurant['id'] }}">{{ $restaurant['store_name'] }}</a>
@@ -40,19 +46,19 @@
                                 </p>
                                 <div>
                                     @if(!empty($restaurant['category_id_1']))
-                                        <button class="btn btn-primary card-text m-1">{{ config('data.category')[$restaurant['category_id_1']] }}</button>
+                                        <a href="{{ route('search.category', $restaurant['category_id_1']) }}" class="btn btn-primary card-text m-1">{{ config('data.category')[$restaurant['category_id_1']] }}</a>
                                     @endif
                                     @if(!empty($restaurant['category_id_2']))
-                                        <button class="btn btn-primary card-text m-1">{{ config('data.category')[$restaurant['category_id_2']] }}</button>
+                                        <a href="{{ route('search.category', $restaurant['category_id_2']) }}"　class="btn btn-primary card-text m-1">{{ config('data.category')[$restaurant['category_id_2']] }}</a>
                                     @endif
                                     @if(!empty($restaurant['category_id_3']))
-                                        <button class="btn btn-primary card-text m-1">{{ config('data.category')[$restaurant['category_id_3']] }}</button>
+                                        <a href="{{ route('search.category', $restaurant['category_id_3']) }}"　class="btn btn-primary card-text m-1">{{ config('data.category')[$restaurant['category_id_3']] }}</a>
                                     @endif
                                     @if(!empty($restaurant['category_id_4']))
-                                        <button class="btn btn-primary card-text m-1">{{ config('data.category')[$restaurant['category_id_4']] }}</button>
+                                        <a href="{{ route('search.category', $restaurant['category_id_4']) }}" class="btn btn-primary card-text m-1">{{ config('data.category')[$restaurant['category_id_4']] }}</a>
                                     @endif
                                     @if(!empty($restaurant['category_id_5']))
-                                        <button class="btn btn-primary card-text m-1">{{ config('data.category')[$restaurant['category_id_5']] }}</button>
+                                        <a href="{{ route('search.category', $restaurant['category_id_5']) }}" class="btn btn-primary card-text m-1">{{ config('data.category')[$restaurant['category_id_5']] }}</a>
                                     @endif
                                 <div>
                             </div>
@@ -60,6 +66,7 @@
                     </div>
                 @endforeach
             </div>
+</div>
         </div>
     </div>
     <!-- /.row -->

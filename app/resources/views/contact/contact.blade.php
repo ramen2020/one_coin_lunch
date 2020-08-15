@@ -6,7 +6,7 @@
 
     <div class="row">
         <div class="col-lg-8 mb-4">
-            <h3 class="my-5">お問い合わせ</h3>
+            <h3 class="mb-5">お問い合わせ</h3>
             {{ Form::open(['route' => 'contact.confirm', 'method' => 'post']) }}
                 <div class="control-group form-group">
                         <label>お名前</label><span class="required">※</span>

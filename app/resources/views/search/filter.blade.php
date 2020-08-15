@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-    <h2 class="my-5">ランチを探す</h2>
+    <h2>ランチを探す</h2>
     @if ($errors->any())
         <p id="restaurant-create-error" class="alert alert-danger">※ 入力項目を確認してください。</p>
     @endif

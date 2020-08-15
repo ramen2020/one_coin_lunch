@@ -1,6 +1,6 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-light fixed-top mb-5">
+<nav class="navbar navbar-expand-lg navbar-dark pt-4 navbar-back-color">
     <div class="container">
-        <a class="navbar-brand" href="/">OneCoinLunch</a>
+        <a class="navbar-brand mb-2 p-2" href="/">OneCoinLunch</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
             data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
             aria-label="Toggle navigation">

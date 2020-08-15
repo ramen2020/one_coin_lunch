@@ -25,8 +25,6 @@ Route::group(['prefix' => 'filter'], function () {
     Route::get('/search', 'SearchController@filter')->name('search.filter');
 });
 
-Route::get('/prefecture/search/{prefecture_id}', 'SearchController@filterByPrefecture')->name('search.prefecture');
-
 // 地図検索
 Route::group(['prefix' => 'map'], function () {
     Route::get('/', function () {
@@ -42,6 +40,11 @@ Route::group(['prefix' => 'word'], function () {
     });
     Route::get('/search', 'SearchController@word')->name('search.word');
 });
+
+// 都道府県から探す
+Route::get('/prefecture/search/{prefecture_id}', 'SearchController@filterByPrefecture')->name('search.prefecture');
+// カテゴリIDから探す
+Route::get('/category/search/{category_id}', 'SearchController@filterByCategory')->name('search.category');
 
 // お問い合わせ
 Route::group(['prefix' => 'contact'], function () {

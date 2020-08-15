@@ -7,6 +7,11 @@
   color: #ff6347;
 }
 
+/* nav bar */
+.navbar-back-color {
+  background-color: #f29500;
+}
+
 /* Google map */
 #map {
   height: 80%;

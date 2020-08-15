@@ -21,13 +21,13 @@
         </div>
 
         <div class="col-lg-9">
-            <h2>検索結果</h2>
+            <h2 class="mb-5">検索結果</h2>
             <div class="row">
                 @if($restaurants)
                     @foreach($restaurants as $restaurant)
                         <div class="col-lg-4 mb-2">
                             <div class="card h-100">
-                                <a href="{{ $restaurant['image_name'] }}"><img class="card-img-top" src="" alt="700❌400"></a>
+                                <a href="{{ $restaurant['image_name'] }}"><img class="card-img-top" src="../../image/morning-brew-eFSUPUeYs3w-unsplash.jpg" alt="700❌400"></a>
                                 <div class="card-body">
                                     <h4>
                                         <a href="/restaurant/show/{{ $restaurant['id'] }}">{{ $restaurant['store_name'] }}</a>
@@ -40,21 +40,21 @@
                                     </p>
                                     <div>
                                         @if(!empty($restaurant['category_id_1']))
-                                            <button class="btn btn-primary card-text m-1">{{ config('data.category')[$restaurant['category_id_1']] }}</button>
+                                            <a href="{{ route('search.category', $restaurant['category_id_1']) }}" class="btn btn-primary card-text m-1">{{ config('data.category')[$restaurant['category_id_1']] }}</a>
                                         @endif
                                         @if(!empty($restaurant['category_id_2']))
-                                            <button class="btn btn-primary card-text m-1">{{ config('data.category')[$restaurant['category_id_2']] }}</button>
+                                            <a href="{{ route('search.category', $restaurant['category_id_2']) }}"　class="btn btn-primary card-text m-1">{{ config('data.category')[$restaurant['category_id_2']] }}</a>
                                         @endif
                                         @if(!empty($restaurant['category_id_3']))
-                                            <button class="btn btn-primary card-text m-1">{{ config('data.category')[$restaurant['category_id_3']] }}</button>
+                                            <a href="{{ route('search.category', $restaurant['category_id_3']) }}"　class="btn btn-primary card-text m-1">{{ config('data.category')[$restaurant['category_id_3']] }}</a>
                                         @endif
                                         @if(!empty($restaurant['category_id_4']))
-                                            <button class="btn btn-primary card-text m-1">{{ config('data.category')[$restaurant['category_id_4']] }}</button>
+                                            <a href="{{ route('search.category', $restaurant['category_id_4']) }}" class="btn btn-primary card-text m-1">{{ config('data.category')[$restaurant['category_id_4']] }}</a>
                                         @endif
                                         @if(!empty($restaurant['category_id_5']))
-                                            <button class="btn btn-primary card-text m-1">{{ config('data.category')[$restaurant['category_id_5']] }}</button>
+                                            <a href="{{ route('search.category', $restaurant['category_id_5']) }}" class="btn btn-primary card-text m-1">{{ config('data.category')[$restaurant['category_id_5']] }}</a>
                                         @endif
-                                    <div>
+                                <div>
                                 </div>
                             </div></div></div>
                         </div>
