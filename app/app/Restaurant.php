@@ -41,7 +41,6 @@ class Restaurant extends Model
             });
 
         $restaurants = $restaurant_query->get();
-
         return $restaurants;
     }
 
@@ -53,5 +52,14 @@ class Restaurant extends Model
         $restaurant_query = SearchService::querySearchFilter($request_search, $restaurant_query);
         $restaurants = $restaurant_query->get();
         return $restaurants;
+    }
+
+    // 絞り込み検索の条件から店舗を抽出する
+    public static function getRestaurantsByPrefecture($prefecture_id)
+    {
+        return self::latest('created_at')
+            ->where('status', 2)
+            ->where('prefecture_id', $prefecture_id)
+            ->get();
     }
 }

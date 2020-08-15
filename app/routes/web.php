@@ -25,6 +25,8 @@ Route::group(['prefix' => 'filter'], function () {
     Route::get('/search', 'SearchController@filter')->name('search.filter');
 });
 
+Route::get('/prefecture/search/{prefecture_id}', 'SearchController@filterByPrefecture')->name('search.prefecture');
+
 // 地図検索
 Route::group(['prefix' => 'map'], function () {
     Route::get('/', function () {
