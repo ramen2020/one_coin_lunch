@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','twitter_id','twitter_nickname','twitter_avator',
+        'name', 'email', 'password','twitter_id','twitter_nickname','twitter_avator', 'profile_image'
     ];
 
     /**
@@ -39,4 +39,16 @@ class User extends Authenticatable
     ];
 
     protected $dates = ['deleted_at'];
+
+    // リレーション restaurantsテーブル
+    public function restaurants()
+    {
+        return $this->hasMany('App\Restaurant');
+    }
+
+    // idからユーザーを取得
+    public static function getUserById($id)
+    {
+        return self::find($id);
+    }
 }
