@@ -46,4 +46,11 @@ class SearchController extends Controller
         $restaurants = Restaurant::getRestaurantsByPrefecture($prefecture_id)->toArray();
         return view('search.result', compact('restaurants'));
     }
+
+    // 都道府県から検索
+    public function filterByCategory($category_id)
+    {
+        $restaurants = Restaurant::getRestaurantsByCategory($category_id)->toArray();
+        return view('search.result', compact('restaurants'));
+    }
 }

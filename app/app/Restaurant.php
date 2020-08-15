@@ -65,4 +65,18 @@ class Restaurant extends Model
             ->where('prefecture_id', $prefecture_id)
             ->get();
     }
+
+    // カテゴリから店舗を検索
+    public static function getRestaurantsByCategory($category_id)
+    {
+        return self::latest('created_at')
+            ->where('status', 2)
+            ->where(function ($query) use ($category_id) {
+                $query->where('restaurants' . '.category_id_1', $category_id)
+                    ->orWhere('restaurants' . '.category_id_2', $category_id)
+                    ->orWhere('restaurants' . '.category_id_3', $category_id)
+                    ->orWhere('restaurants' . '.category_id_4', $category_id)
+                    ->orWhere('restaurants' . '.category_id_5', $category_id);
+            })->get();
+    }
 }
