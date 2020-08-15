@@ -7,11 +7,6 @@ use Illuminate\Support\Facades\DB;
 
 class SearchService
 {
-    public function searchRestaurantsByWords($request_search)
-    {
-        return Restaurant::getRestaurantsByWord($request_search);
-    }
-
     // ワード検索の検索条件
     public static function querySearchWord($query, $request_search)
     {

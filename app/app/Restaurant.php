@@ -19,6 +19,7 @@ class Restaurant extends Model
 
     const RESTAURANT_TABLE = 'restaurants';
 
+    // 店舗を全件取得
     public static function getAllRestaurants()
     {
         return self::latest('created_at')
@@ -26,15 +27,17 @@ class Restaurant extends Model
             ->get();
     }
 
+    // idから店舗を取得
     public static function getRestaurantById($id)
     {
         return self::where(self::RESTAURANT_TABLE . '.id', $id)
             ->first();
     }
 
+    // キーワードから店舗を取得
     public static function getRestaurantsByWord($words)
     {
-        $restaurant_query = Restaurant::query();
+        $restaurant_query = self::query();
         $restaurant_query->where(self::RESTAURANT_TABLE . '.status', 2)
             ->when($words, function ($query, $search) {
                 return SearchService::querySearchWord($query, $search);
@@ -44,7 +47,7 @@ class Restaurant extends Model
         return $restaurants;
     }
 
-    // 絞り込み検索の条件から店舗を抽出する
+    // 絞り込み検索の条件から店舗を取得
     public static function searchRestaurantsByfilter($request)
     {
         $request_search = $request->query();
@@ -54,7 +57,7 @@ class Restaurant extends Model
         return $restaurants;
     }
 
-    // 絞り込み検索の条件から店舗を抽出する
+    // 都道府県から店舗を取得
     public static function getRestaurantsByPrefecture($prefecture_id)
     {
         return self::latest('created_at')

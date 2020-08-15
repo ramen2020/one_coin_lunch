@@ -53,19 +53,4 @@ class RestaurantController extends Controller
         $restaurant = $this->restaurant_service->getRestaurantById($id);
         return view('restaurant.detail', compact('restaurant'));
     }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(StoreRestaurantRequest $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
-    }
 }

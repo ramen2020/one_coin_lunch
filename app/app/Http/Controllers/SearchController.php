@@ -19,7 +19,7 @@ class SearchController extends Controller
     public function word(Request $request) {
         $query = $request->query();
         $word = $query['word'];
-        $restaurants = $this->search_service->searchRestaurantsByWords($word)->toArray();
+        $restaurants = Restaurant::getRestaurantsByWord($word)->toArray();
 
         return view('search.result', compact('restaurants'));
     }
