@@ -18,7 +18,7 @@
             @endif
         </div>
         <div class="mt-5 col-lg-6">
-            <div class="mt-5">
+            <div class="mt-5 mb-50">
                 <h4 class="border-bottom mb-3 pl-2 pb-2">自己紹介</h4>
                 @if(!empty($user['introduction']))
                     <p>{!! nl2br(e($user['introduction'])) !!}</p>
@@ -26,10 +26,9 @@
                     <p>自己紹介文がまだありません。自己紹介を書いてみよう！</p>
                 @endif
             </div>
-            <!-- <div class="mt-5">
-                <h4 class="border-bottom mb-3 pl-2 pb-2">メールアドレス</h4>
-                <p>{{ $user['email'] }}</p>
-            </div> -->
+            @if($user['id'] === Auth::id())
+                <a href="{{ route('user.editMyProfile') }}"><v-btn color="primary">プロフィールを編集</v-btn></a>
+            @endif
         </div>
     </div>
     <div class="mt-5">

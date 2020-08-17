@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Http\Requests\AddImageRequest;
-use Illuminate\Http\Request;
+use App\Http\Requests\UpdateUserProfileRequest;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -32,9 +32,8 @@ class UserController extends Controller
 
     public function editMyProfile()
     {
-        $my_user_id = \Auth::id();
-        $my_user = $this->user->getUserById($my_user_id);
-        return view('user.show', compact('my_user'));
+        $user = \Auth::user();
+        return view('user.edit', compact('user'));
     }
 
     public function updateImage(AddImageRequest $request)
@@ -49,9 +48,15 @@ class UserController extends Controller
         return response()->json($url);
     }
 
-    public function update(Request $request, $id)
+    public function updateProfile(UpdateUserProfileRequest $request)
     {
-        //
+        $user = \Auth::user();
+        $input = $request->all();
+        $user->name = $input['name'];
+        $user->email = $input['email'];
+        $user->introduction = $input['introduction'];
+        $user->save();
+        return redirect()->route('user.myProfile');
     }
 
     public function destroy($id)
