@@ -6,7 +6,16 @@
     <h2 class="text-center border-bottom py-4 mb-5">{{ $user['name'] }}のプロフィール</h2>
     <div class="row">
         <div class="mt-5 col-lg-6 text-center">
-            <img class="avatar-img" alt="" src="../../image/f_f_health_37_s512_f_health_37_1bg.png">
+            @if($user['id'] === Auth::id())
+                <add-user-image-form
+                    id='{{ Auth::id() }}'
+                    image='{{ Auth::user()->profile_image }}'>
+                </add-user-image-form>
+            @elseif(empty($user['profile_image']))
+                <p>プロフィール画像はまだありません</p>
+            @else
+                <img class="avatar-img mb-5" alt="" src="../../image/f_f_health_37_s512_f_health_37_1bg.png">
+            @endif
         </div>
         <div class="mt-5 col-lg-6">
             <div class="mt-5">
