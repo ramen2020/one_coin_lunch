@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Mail\Admin\ContactMailAdmin;
 use App\Mail\ContactMail;
 use Illuminate\Http\Request;
 
@@ -29,10 +30,12 @@ class ContactController extends Controller
         if ($request->submit === '戻る') {
             return redirect()->route('contact.index')->withInput($contact_content);
         }
-        dd($request);
 
         $request->session()->regenerateToken();
-        \Mail::to(env('MAIL_FROM_ADDRESS'))->send(new ContactMail($contact_content));
+        // 管理者へメール
+        \Mail::to(env('MAIL_FROM_ADDRESS'))->send(new ContactMailAdmin($contact_content));
+        // ユーザーへメール
+        \Mail::to($contact_content['email'])->send(new ContactMail($contact_content));
 
         return view('contact.thanks', compact('contact_content'));
     }
