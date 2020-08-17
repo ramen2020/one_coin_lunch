@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Restaurant;
 use App\Services\SearchService;
 use Illuminate\Http\Request;
+use App\Http\Requests\SearchFilterRequest;
 
 class SearchController extends Controller
 {
@@ -19,7 +20,7 @@ class SearchController extends Controller
     public function word(Request $request) {
         $query = $request->query();
         $word = $query['word'];
-        $restaurants = Restaurant::getRestaurantsByWord($word)->toArray();
+        $restaurants = Restaurant::getRestaurantsByWord($word);
 
         return view('search.result', compact('restaurants'));
     }
@@ -31,26 +32,24 @@ class SearchController extends Controller
         return response()->json(['marker' => $restaurants]);
     }
 
-    // グーグルアカウント作り直し、apiキー作って読み込む、お問い合わせも変える
-
     // 絞り込み検索
-    public function filter(Request $request)
+    public function filter(SearchFilterRequest $request)
     {
-        $restaurants = Restaurant::searchRestaurantsByfilter($request)->toArray();
+        $restaurants = Restaurant::searchRestaurantsByfilter($request);
         return view('search.result', compact('restaurants'));
     }
 
     // 都道府県から検索
     public function filterByPrefecture($prefecture_id)
     {
-        $restaurants = Restaurant::getRestaurantsByPrefecture($prefecture_id)->toArray();
+        $restaurants = Restaurant::getRestaurantsByPrefecture($prefecture_id);
         return view('search.result', compact('restaurants'));
     }
 
     // 都道府県から検索
     public function filterByCategory($category_id)
     {
-        $restaurants = Restaurant::getRestaurantsByCategory($category_id)->toArray();
+        $restaurants = Restaurant::getRestaurantsByCategory($category_id);
         return view('search.result', compact('restaurants'));
     }
 }

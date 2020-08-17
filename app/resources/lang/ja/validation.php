@@ -161,6 +161,9 @@ return [
         'category_id_3' => 'カテゴリ',
         'category_id_4' => 'カテゴリ',
         'category_id_5' => 'カテゴリ',
+        'name' => 'お名前',
+        'email' => 'メールアドレス',
+        'introduction' => '自己紹介'
     ],
 
 ];
