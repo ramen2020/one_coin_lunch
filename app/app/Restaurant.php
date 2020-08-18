@@ -19,12 +19,21 @@ class Restaurant extends Model
 
     const RESTAURANT_TABLE = 'restaurants';
 
+    // ページネーションで１ページの表示数
+    const PAGENATE_NUMBER = 6;
+
+    // リレーション userテーブル
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
     // 店舗を全件取得
     public static function getAllRestaurants()
     {
         return self::latest('created_at')
             ->where('status', 2)
-            ->get();
+            ->paginate(self::PAGENATE_NUMBER);
     }
 
     // idから店舗を取得
