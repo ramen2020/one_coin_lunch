@@ -15,6 +15,13 @@
 
         <div class="col-lg-9">
             <h2>{{ $restaurant['store_name'] }}</h2>
+            <div class="d-flex align-items-center">
+                @if (!$favorite_id)
+                    <favorite-component user-id='{{ Auth::id() }}' restaurant-id="{{ $restaurant->id }}" favorite-count="{{ count($restaurant->favorites) }}"></favorite-component>
+                @else
+                    <favorite-component user-id='{{ Auth::id() }}' restaurant-id="{{ $restaurant->id }}" favorite-id="{{ $favorite_id }}" favorite-count="{{ count($restaurant->favorites) }}"></favorite-component>
+                @endif
+            </div>
             <div class="row">
                     <div class="col-lg-12 mb-2">
                         <div class="card h-100">

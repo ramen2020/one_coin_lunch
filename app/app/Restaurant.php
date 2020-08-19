@@ -28,6 +28,12 @@ class Restaurant extends Model
         return $this->belongsTo('App\User');
     }
 
+    // リレーション いいねテーブル
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+
     // 店舗を全件取得
     public static function getAllRestaurants()
     {
