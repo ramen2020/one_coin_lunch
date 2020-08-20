@@ -16,6 +16,12 @@ Auth::routes();
 
 // topページ
 Route::get('/', 'RestaurantController@index')->name('restaurant.index');
+// 新着一覧
+Route::get('/restaurants/new', function () {
+    return view('restaurant.new');
+});
+
+Route::post('/restaurants/new', 'RestaurantController@newRestaurants')->name('restaurant.new');
 
 // 絞り込み検索
 Route::group(['prefix' => 'filter'], function () {
@@ -63,6 +69,10 @@ Route::get('auth/twitter/logout', 'Auth\TwitterController@logout');
 
 Route::group(['middleware' => 'auth'], function () {
 
+    // いいね
+    Route::post('favorites', 'FavoriteController@store');
+    Route::delete('favorites/{favorite_id}', 'FavoriteController@destroy');
+
     // ワンコインランチの店舗について
     Route::group(['prefix' => 'restaurant'], function () {
         // 新規作成画面
@@ -77,14 +87,16 @@ Route::group(['middleware' => 'auth'], function () {
         Route::put('/update/{restaurant_id}', 'RestaurantController@update')->name('restaurant.update');
         // 詳細
         Route::get('/show/{restaurant_id}', 'RestaurantController@show')->name('restaurant.show');
+        // お気に入りしている店舗
+        Route::get('/favoriteList', 'RestaurantController@favoriteList')->name('restaurant.favoriteList');
     });
 
     // プロフィールについて
     Route::group(['prefix' => 'user'], function () {
         // 編集画面
         Route::get('/edit/myProfile', 'UserController@editMyProfile')->name('user.editMyProfile');
-        // 更新
-        Route::put('/update', 'UserController@update')->name('user.update');
+        // プロフィール更新
+        Route::put('/update', 'UserController@updateProfile')->name('user.updateProfile');
         // 詳細
         Route::get('/profile/{user_id}', 'UserController@profile')->name('user.profile');
         Route::get('/myProfile', 'UserController@myProfile')->name('user.myProfile');
