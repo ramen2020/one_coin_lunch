@@ -25,7 +25,7 @@ class TwitterLoginController extends Controller
             return redirect('login/twitter');
         }
 
-        return redirect('/');
+        return redirect('/')->with('login_success_message', 'ログインしました！');
     }
 
     // TwitterのUserがDBに登録していなかったら登録する
@@ -36,10 +36,10 @@ class TwitterLoginController extends Controller
             $user = User::create([
                 "twitter_id" => $twitter_user->id,
                 "twitter_nickname" => $twitter_user->nickname,
+                'profile_image' => $twitter_user->avatar,
                 'name' => $twitter_user->name,
                 'email' => $twitter_user->email,
-                'twitter_avator' => $twitter_user->avatar,
-                'password' => \Hash::make('test1234'),
+                'password' => \Hash::make(str_shuffle('1234567890abcdefghijklmnopqrstuvwxyz')),
             ]);
         }
 

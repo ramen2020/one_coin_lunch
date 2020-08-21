@@ -1,16 +1,31 @@
-<nav class="navbar navbar-expand-lg navbar-dark pt-4 navbar-back-color">
+@guest
+    <v-alert class="mb-0" type="light-green" border="bottom" prominent dismissible>
+        <v-row justify="center">
+            <a class="white--text" href="{{ route('login.guest') }}">
+            <v-icon color="white" class="mr-1 mb-1">sentiment_dissatisfied</v-icon>
+            ゲストユーザーでログイン<br>簡単にログインでき、全ての機能が使えます</a>
+        </v-row>
+    </v-alert>
+@endguest
+
+@include('alert.flash_message')
+
+<nav class="navbar navbar-expand-lg navbar-dark navbar-back-color">
     <div class="container">
-        <a class="navbar-brand mb-2 p-2" href="/">OneCoinLunch</a>
+        <a class="navbar-brand" href="/">OneCoinLunch</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
             data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
             aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto mt-4">
                 @guest
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login.guest') }}">ゲストログインする</a>
                 </li>
                 @if (Route::has('register'))
                 <li class="nav-item">
@@ -18,17 +33,12 @@
                 </li>
                 @endif
                 @else
+                <li class="nav-item d-flex mr-5">
+                    <a href="{{ route('user.myProfile') }}" class="font-weight-lighter text-light mt-2 mr-2">＠{{ \Auth::user()->name }}</a>
+                    <img class="avatar-img-icon" alt="" src="../../image/f_f_health_37_s512_f_health_37_1bg.png">
+                </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-                        ログアウト
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </a>
-                <li>
-                <li class="nav-item">
-                    <a class="nav-link" href="services.html">お気に入り</a>
+                    <a class="nav-link" href="{{ route('restaurant.favoriteList') }}">お気に入り</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown"
@@ -37,15 +47,17 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
                         <a class="dropdown-item" href="{{ route('restaurant.create') }}">投稿申請</a>
-                        <a class="dropdown-item" href="">投稿一覧</a>
-                        <a class="dropdown-item" href="{{ route('user.myProfile') }}">プロフィール詳細</a>
-                        <a class="dropdown-item" href="{{ route('user.editMyProfile') }}">プロフィール編集</a>
+                        <a class="dropdown-item" href="{{ route('user.myProfile') }}">マイプロフィール</a>
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                        ログアウト
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </a>
                     </div>
                 </li>
                 @endguest
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('contact.index') }}">お問い合わせ</a>
-                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
@@ -56,6 +68,9 @@
                         <a class="dropdown-item" href='/map'>地図で探す</a>
                         <a class="dropdown-item" href='/word'>ワード検索</a>
                     </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('contact.index') }}">お問い合わせ</a>
                 </li>
             </ul>
         </div>

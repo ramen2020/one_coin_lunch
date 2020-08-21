@@ -14,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 Auth::routes();
 
+// guestユーザー ログイン
+Route::get('login/guest', 'Auth\LoginController@guestLogin')->name('login.guest');
+
+// twitter ログイン
+Route::get('login/twitter', 'Auth\TwitterLoginController@redirectToProvider')->name('login.twitter');
+Route::get('auth/twitter/callback', 'Auth\TwitterLoginController@handleProviderCallback');
+Route::get('auth/twitter/logout', 'Auth\TwitterController@logout');
+
 // topページ
 Route::get('/', 'RestaurantController@index')->name('restaurant.index');
 // 新着一覧
@@ -61,11 +69,6 @@ Route::group(['prefix' => 'contact'], function () {
     //送信完了ページ
     Route::post('/thanks', 'ContactController@thanks')->name('contact.thanks');
 });
-
-// twitter ログイン
-Route::get('login/twitter', 'Auth\TwitterLoginController@redirectToProvider')->name('login.twitter');
-Route::get('auth/twitter/callback', 'Auth\TwitterLoginController@handleProviderCallback');
-Route::get('auth/twitter/logout', 'Auth\TwitterController@logout');
 
 Route::group(['middleware' => 'auth'], function () {
 
