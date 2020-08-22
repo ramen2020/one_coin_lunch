@@ -7,6 +7,7 @@ use App\Favorite;
 use App\Services\RestaurantService;
 use App\Http\Requests\Restaurant\StoreRestaurantRequest;
 use App\Http\Requests\Restaurant\AddRestaurantImageRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class RestaurantController extends Controller
@@ -108,5 +109,20 @@ class RestaurantController extends Controller
         }
 
         return view('restaurant.favorite', compact('restaurants'));
+    }
+
+    public function destroy($restaurant_id, $user_id)
+    {
+        $restaurant = $this->restaurant->with('user:id')->find($restaurant_id);
+        $request_user_id = $restaurant->user->id;
+        $user_id = \Auth::id();
+
+        if($request_user_id === $user_id) {
+            $restaurant = $this->restaurant->find($restaurant_id);
+            $restaurant->favorites()->delete();
+            $restaurant->delete();
+        }
+
+        return redirect()->route('user.myProfile')->with('restaurant_message', '投稿を削除しました。');
     }
 }
