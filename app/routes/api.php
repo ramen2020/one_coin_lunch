@@ -19,3 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/user/image', 'UserController@updateImage')->name('user.image.update');
+// 画像追加
+Route::post('/restaurant/update/image', 'RestaurantController@updateImage')->name('restaurant.image.update');

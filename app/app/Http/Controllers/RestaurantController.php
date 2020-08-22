@@ -6,17 +6,20 @@ use App\Restaurant;
 use App\Favorite;
 use App\Services\RestaurantService;
 use App\Http\Requests\Restaurant\StoreRestaurantRequest;
-use Illuminate\Http\Request;
+use App\Http\Requests\Restaurant\AddRestaurantImageRequest;
+use Illuminate\Support\Facades\Storage;
 
 class RestaurantController extends Controller
 {
     private $restaurant_service;
+    private $restaurant;
     private $favorite;
     private $category_list;
 
-    public function __construct(RestaurantService $restaurant_service, Favorite $favorite)
+    public function __construct(Restaurant $restaurant, RestaurantService $restaurant_service, Favorite $favorite)
     {
         $this->restaurant_service = $restaurant_service;
+        $this->restaurant = $restaurant;
         $this->favorite = $favorite;
         $this->category_list = config('data.category');
     }
@@ -24,7 +27,7 @@ class RestaurantController extends Controller
     public function newRestaurants()
     {
         $category_list = $this->category_list;
-        $restaurants = Restaurant::with(['user','favorites'])
+        $restaurants = $this->restaurant->with(['user','favorites'])
             ->orderby('restaurants.created_at', 'DESC')
             ->paginate(6);
 
@@ -64,15 +67,25 @@ class RestaurantController extends Controller
     public function store(StoreRestaurantRequest $request)
     {
         $input = $request->except('submit');
-
         // 戻るボタン
         if ($request->submit === '戻る') {
             return redirect()->route('restaurant.create')->withInput($input);
         }
 
-        $this->restaurant_service->setCategoryId($request)
+        $create_restaurant = $this->restaurant_service->setCategoryId($request)
             ->createRestaurant($request);
-        return view('restaurant.complete', compact('input'));
+            return redirect()->route('restaurant.show', $create_restaurant['id'])
+                ->with('restaurant_create_message', '投稿しました。画像編集から画像を追加してください。');
+    }
+
+    public function updateImage(AddRestaurantImageRequest $request)
+    {
+        $image = $request->file('file');
+        $id = $request->input('restaurantId');
+        $path = Storage::disk('s3')->putFile('/restaurant-images', $image, 'public');
+        $url = Storage::disk('s3')->url($path);
+        $this->restaurant->where('id', $id)->update(['image_name' => $url]);
+        return response()->json($url);
     }
 
     public function show($id)
