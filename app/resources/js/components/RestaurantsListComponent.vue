@@ -5,7 +5,7 @@
       <div v-for="restaurant in restaurants" :key="restaurant.index" class="col-lg-4 mt-2">
         <div class="card h-100">
           <a href="/">
-            <img class="card-img-top" src="image/morning-brew-eFSUPUeYs3w-unsplash.jpg"
+            <img class="card-img-top" :src="restaurant.image_name"
               alt="ワンコインランチの画像">
           </a>
           <div class="card-body">
@@ -79,16 +79,17 @@ export default {
   },
   methods: {
     async infiniteHandler($state) {
-        const response = await axios.post('/restaurants/new',{
+        const response = await axios.get('/api/restaurants/new?page=${this.page}',{
             params: {
                 page: this.page,
-                per_page: 1
+                per_page: 1,
             }
           }).then(({data}) => {
             this.categoryList.push(data.catogory_list)
 
             setTimeout(() => {
               if (this.page <= data.restaurants.data.length) {
+                console.log(data.restaurants)
                   this.page += 1
                   this.restaurants.push(...data.restaurants.data)
                   $state.loaded()
