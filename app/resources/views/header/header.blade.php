@@ -1,15 +1,3 @@
-@guest
-    <v-alert class="mb-0" type="light-green" border="bottom" prominent dismissible>
-        <v-row justify="center">
-            <a class="white--text" href="{{ route('login.guest') }}">
-            <v-icon color="white" class="mr-1 mb-1">sentiment_dissatisfied</v-icon>
-            ゲストユーザーでログイン<br>簡単にログインでき、全ての機能が使えます</a>
-        </v-row>
-    </v-alert>
-@endguest
-
-@include('alert.flash_message')
-
 <nav class="navbar navbar-expand-lg navbar-dark navbar-back-color">
     <div class="container">
         <a class="navbar-brand" href="/">OneCoinLunch</a>
@@ -35,7 +23,7 @@
                 @else
                 <li class="nav-item d-flex mr-5">
                     <a href="{{ route('user.myProfile') }}" class="font-weight-lighter text-light mt-2 mr-2">＠{{ \Auth::user()->name }}</a>
-                    <img class="avatar-img-icon" alt="" src="../../image/f_f_health_37_s512_f_health_37_1bg.png">
+                    <img class="avatar-img-icon" alt="" src="{{ Auth::user()->profile_image }}">
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('restaurant.favoriteList') }}">お気に入り</a>
@@ -46,15 +34,15 @@
                         ユーザー
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                        <a class="dropdown-item" href="{{ route('restaurant.create') }}">投稿申請</a>
+                        <a class="dropdown-item" href="{{ route('restaurant.create') }}">投稿</a>
                         <a class="dropdown-item" href="{{ route('user.myProfile') }}">マイプロフィール</a>
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
-                        ログアウト
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </a>
+                            ログアウト
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </a>
                     </div>
                 </li>
                 @endguest

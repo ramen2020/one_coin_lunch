@@ -38,7 +38,6 @@ class Restaurant extends Model
     public static function getAllRestaurants()
     {
         return self::latest('created_at')
-            ->where('status', 2)
             ->paginate(self::PAGENATE_NUMBER);
     }
 
@@ -53,8 +52,7 @@ class Restaurant extends Model
     public static function getRestaurantsByWord($words)
     {
         $restaurant_query = self::query();
-        $restaurant_query->where(self::RESTAURANT_TABLE . '.status', 2)
-            ->when($words, function ($query, $search) {
+        $restaurant_query->when($words, function ($query, $search) {
                 return SearchService::querySearchWord($query, $search);
             });
 
@@ -68,7 +66,15 @@ class Restaurant extends Model
         $request_search = $request->query();
         $restaurant_query = self::query();
         $restaurant_query = SearchService::querySearchFilter($request_search, $restaurant_query);
-        $restaurants = $restaurant_query->get();
+        $restaurants = $restaurant_query->with(['user', 'favorites'])->get();
+        foreach($restaurants as &$restaurant) {
+            foreach($restaurant['favorites'] as $favorite) {
+                if($favorite['user_id'] == \Auth::id()) {
+                    $restaurant['is_favorite'] = true;
+                    $restaurant['favorite_id_by_auth'] = $favorite['id'];
+                }
+            }
+        }
         return $restaurants;
     }
 
@@ -76,7 +82,6 @@ class Restaurant extends Model
     public static function getRestaurantsByPrefecture($prefecture_id)
     {
         return self::latest('created_at')
-            ->where('status', 2)
             ->where('prefecture_id', $prefecture_id)
             ->get();
     }
@@ -85,7 +90,6 @@ class Restaurant extends Model
     public static function getRestaurantsByCategory($category_id)
     {
         return self::latest('created_at')
-            ->where('status', 2)
             ->where(function ($query) use ($category_id) {
                 $query->where('restaurants' . '.category_id_1', $category_id)
                     ->orWhere('restaurants' . '.category_id_2', $category_id)

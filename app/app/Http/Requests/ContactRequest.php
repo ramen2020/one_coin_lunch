@@ -24,18 +24,16 @@ class ContactRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|max:50',
+            'name' => 'required|max:50',
             'email' => 'required|email',
-            'title' => 'required|max:50',
             'content' => 'required|max:500',
         ];
     }
 
-    public function messages()
+    public function attributes()
     {
         return [
-            'name' => '正しい賃料の値を入力してください。',
-            'occupied_area_top.gt' => '正しい専有面積の値を入力してください。',
+            'content' => 'お問い合わせ内容',
         ];
     }
 }

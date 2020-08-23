@@ -49,7 +49,6 @@ class RestaurantService
     {
         $create_restaurant = $this->restaurant;
         $create_restaurant->user_id = \Auth::id();
-        $create_restaurant->status = 2;
         $create_restaurant->store_name = $request['store_name'];
         $create_restaurant->store_infomation = $request['store_infomation'];
         $create_restaurant->address =
@@ -57,7 +56,7 @@ class RestaurantService
         $create_restaurant->prefecture_id = $request['prefecture'];
         $create_restaurant->city = $request['city'];
         $create_restaurant->street_address = $request['street_address'];
-        // $create_restaurant->image_name = $request->image_name;
+        $create_restaurant->image_name = config('data.no_image_photo')[1];
         $create_restaurant->high_budget = $request['high_budget'];
         $create_restaurant->low_budget = $request['low_budget'];
         $create_restaurant->latitude = !empty($request['latitude']) ? $request['latitude'] : null;
@@ -68,6 +67,29 @@ class RestaurantService
         $create_restaurant->category_id_4 = !empty($this->category_array[3]) ? $this->category_array[3] : null;
         $create_restaurant->category_id_5 = !empty($this->category_array[4]) ? $this->category_array[4] : null;
         $create_restaurant->save();
+
+        return $create_restaurant;
+    }
+
+    public function addFavoriteIdToRestaurants($restaurants)
+    {
+        foreach($restaurants as $restaurant) {
+            $this->addFavoriteIdToRestaurant($restaurant);
+        }
+        return $restaurants;
+    }
+
+    // 自分がお気に入りしている店舗にfavoriteテーブルのidカラムの値を付与する
+    public function addFavoriteIdToRestaurant(&$restaurant)
+    {
+        foreach($restaurant['favorites'] as $favorite) {
+            if($favorite['user_id'] == \Auth::id()) {
+                $restaurant['is_favorite'] = true;
+                $restaurant['favorite_id_by_auth'] = $favorite['id'];
+            }
+        }
+        unset($restaurant);
+        return;
     }
 
 }

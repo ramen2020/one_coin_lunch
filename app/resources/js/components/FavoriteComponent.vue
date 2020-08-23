@@ -1,14 +1,16 @@
 <template>
-  <div class="d-flex align-items-center">
-    <button @click="storeOrDeleteFavorite()">
-      <v-btn v-if="isFavorite" class="ma-2" text icon color="red lighten-2">
-        <v-icon>mdi-thumb-up</v-icon>
+  <div class="d-flex">
+    <button class="border-none" @click="storeOrDeleteFavorite()">
+      <v-btn v-if="isFavorite" class="ma-3 border-none" text icon color="deep-orange lighten-2">
+        <span class="mt-2">いいねなう</span>
+        <v-icon class="ml-2">mdi-thumb-up</v-icon>
       </v-btn>
-      <v-btn v-else class="ma-2" text icon color="lighten-2">
-        <v-icon>mdi-thumb-up</v-icon>
+      <v-btn v-else class="ma-3 border-none" text icon color="lighten-2">
+        <span class="mt-2">いいねする</span>
+        <v-icon class="ml-2">mdi-thumb-up</v-icon>
       </v-btn>
     </button>
-    <p class="mt-1 mb-0">{{ setFavoriteCount }}</p>
+    <p class="mt-5 ml-9">{{ setFavoriteCount }}</p>
   </div>
 </template>
 
@@ -31,13 +33,11 @@ export default {
   },
   methods: {
     async storeOrDeleteFavorite() {
-
       if (!this.setFavoriteId) {
         const favoriteData = new FormData()
         favoriteData.append('restaurantId', this.restaurantId)
         const response = await axios.post(`/favorites`, favoriteData)
           .then(response => {
-            console.log("こっち")
             this.setFavoriteCount = response.data.favorite_count;
             this.setFavoriteId = response.data.favorite_id;
             this.isFavorite = true;

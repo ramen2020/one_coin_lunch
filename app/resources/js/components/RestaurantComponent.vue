@@ -1,7 +1,10 @@
 <template>
 <div  class="col-lg-4 mt-2 px-1">
   <v-card class="mx-auto col-lg-8" max-width="344">
-    <img class="restaurant-img mb-5" alt="ワンコインランチの画像" :src="restaurant.image_name">
+    <div>
+      <img v-if=restaurant.image_name class="restaurant-img mb-5" alt="ワンコインランチの画像" :src="restaurant.image_name">
+      <img v-else class="restaurant-img mb-5" alt="ワンコインランチの画像" :src=this.noImage>
+    </div>
     <v-card-title>
       <a v-bind:href="`/restaurant/show/${restaurant.id}`">{{ restaurant.store_name }}</a>
     </v-card-title>
@@ -59,5 +62,10 @@
 <script>
 export default {
   props: ['restaurant', 'userId', 'categoryList'],
+  data() {
+    return {
+      noImage: "https://one-coin-lunch-images.s3-ap-northeast-1.amazonaws.com/icon/others/no_image.jpg"
+    };
+  },
 }
 </script>

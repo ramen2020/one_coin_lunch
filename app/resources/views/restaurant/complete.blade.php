@@ -16,7 +16,7 @@
         </div>
         <div class="form-group">
             <label>都道府県</label><br>
-            <div class="form-control">{{ config('data.prefecture')[$input['prefecture']] }}</div>
+            <div class="form-control mb-1" readonly>{{ config('data.prefecture')[$input['prefecture']] }}</div>
         </div>
         <div class="form-group">
             <label>区市町村</label>
@@ -37,32 +37,33 @@
 
         <div class="form-group">
             <label>カテゴリ</label>
-            @if(!empty(input['category_id_1']))
-                <div class="form-control mb-1" readonly>{{ config('data.category')[input['category_id_1']] }}</div>
+            @if(!empty($input['category_id_1']))
+                <div class="form-control mb-1" readonly>{{ config('data.category')[$input['category_id_1']] }}</div>
             @endif
-            @if(!empty(input['category_id_2']))
-                <div class="form-control mb-1" readonly>{{ config('data.category')[input['category_id_2']] }}</div>
+            @if(!empty($input['category_id_2']))
+                <div class="form-control mb-1" readonly>{{ config('data.category')[$input['category_id_2']] }}</div>
             @endif
-            @if(!empty(input['category_id_3']))
-                <div class="form-control mb-1" readonly>{{ config('data.category')[input['category_id_3']] }}</div>
+            @if(!empty($input['category_id_3']))
+                <div class="form-control mb-1" readonly>{{ config('data.category')[$input['category_id_3']] }}</div>
             @endif
-            @if(!empty(input['category_id_4']))
-                <div class="form-control mb-1" readonly>{{ config('data.category')[input['category_id_4']] }}</div>
+            @if(!empty($input['category_id_4']))
+                <div class="form-control mb-1" readonly>{{ config('data.category')[$input['category_id_4']] }}</div>
             @endif
-            @if(!empty(input['category_id_5']))
-                <div class="form-control mb-1" readonly>{{ config('data.category')[input['category_id_5']] }}</div>
+            @if(!empty($input['category_id_5']))
+                <div class="form-control mb-1" readonly>{{ config('data.category')[$input['category_id_5']] }}</div>
             @endif
         </div>
-        @if(!empty(input['latitude']))
+        @if(!empty($input['latitude']))
             <div class="form-group">
                 <label>緯度</label>
-                {{ Form::text('latitude', null, ['class' => 'form-control', 'readonly']) }}
+                <div class="form-control mb-1" readonly>{{ $input['latitude'] }}</div>
             </div>
         @endif
-        @if(!empty(input['longitude']))
+        @if(!empty($input['longitude']))
             <div class="form-group">
                 <label>経度</label>
                 {{ Form::text('longitude', null, ['class' => 'form-control', 'readonly']) }}
+                <div class="form-control mb-1" readonly>{{ $input['longitude'] }}</div>
             </div>
         @endif
 

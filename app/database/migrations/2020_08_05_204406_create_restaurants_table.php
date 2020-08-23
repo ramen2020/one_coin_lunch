@@ -16,7 +16,6 @@ class CreateRestaurantsTable extends Migration
         Schema::create('restaurants', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->unsigned()->index();
-            $table->unsignedInteger('status')->default(1)->comment('申請中:1、投稿済み:2');
             $table->string('store_name', 50)->comment('店舗名');
             $table->string('store_infomation', 500)->comment('店舗情報');
             $table->string('address')->nullable()->comment('住所');

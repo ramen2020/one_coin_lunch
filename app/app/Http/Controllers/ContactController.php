@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Mail\Admin\ContactMailAdmin;
 use App\Mail\ContactMail;
-use Illuminate\Http\Request;
+use App\Http\Requests\ContactRequest;
 
 class ContactController extends Controller
 {
@@ -16,14 +16,14 @@ class ContactController extends Controller
     }
 
     // お問い合わせ確認画面
-    public function confirm(Request $request)
+    public function confirm(ContactRequest $request)
     {
         $contact_content = $request->all();
         return view('contact.confirm', compact('contact_content'));
     }
 
     // お問い合わせ完了画面
-    public function thanks(Request $request)
+    public function thanks(ContactRequest $request)
     {
         $contact_content = $request->except('submit');
         // 戻るボタン

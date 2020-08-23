@@ -13,53 +13,72 @@
             @include('sidebar.sidebar')
         </div>
 
-        <div class="col-lg-9">
-            <h2>{{ $restaurant['store_name'] }}</h2>
-            <div class="d-flex align-items-center">
-                @if (!$favorite_id)
-                    <favorite-component user-id='{{ Auth::id() }}' restaurant-id="{{ $restaurant->id }}" favorite-count="{{ count($restaurant->favorites) }}"></favorite-component>
-                @else
-                    <favorite-component user-id='{{ Auth::id() }}' restaurant-id="{{ $restaurant->id }}" favorite-id="{{ $favorite_id }}" favorite-count="{{ count($restaurant->favorites) }}"></favorite-component>
-                @endif
-            </div>
-            <div class="row">
-                    <div class="col-lg-12 mb-2">
-                        <div class="card h-100">
-                            <a href="{{ $restaurant['image_name'] }}"><img class="card-img-top" src="" alt="700❌400"></a>
-                            <div class="card-body">
-                                <p>
-                                    {{ $restaurant['high_budget'] }}円~{{ $restaurant['low_budget'] }}円
-                                </p>
-                                <p>
-                                    {{ config('data.prefecture')[$restaurant['prefecture_id']] }}
-                                    {{ $restaurant['city'] }}
-                                    {{ $restaurant['street_address'] }}
-                                </p>
-                                <p>{!! nl2br(e($restaurant['store_infomation'])) !!}</p>
-                                <div>
-                                    @if(!empty($restaurant['category_id_1']))
-                                        <button class="btn btn-primary card-text m-1">{{ config('data.category')[$restaurant['category_id_1']] }}</button>
-                                    @endif
-                                    @if(!empty($restaurant['category_id_2']))
-                                        <button class="btn btn-primary card-text m-1">{{ config('data.category')[$restaurant['category_id_2']] }}</button>
-                                    @endif
-                                    @if(!empty($restaurant['category_id_3']))
-                                        <button class="btn btn-primary card-text m-1">{{ config('data.category')[$restaurant['category_id_3']] }}</button>
-                                    @endif
-                                    @if(!empty($restaurant['category_id_4']))
-                                        <button class="btn btn-primary card-text m-1">{{ config('data.category')[$restaurant['category_id_4']] }}</button>
-                                    @endif
-                                    @if(!empty($restaurant['category_id_5']))
-                                        <button class="btn btn-primary card-text m-1">{{ config('data.category')[$restaurant['category_id_5']] }}</button>
-                                    @endif
-                                <div>
-                            </div>
-                        </div></div></div>
-                    </div>
-            </div>
-        </div>
-    </div>
-    <!-- /.row -->
+        <v-card class="mx-auto col-lg-8" max-width="344">
+            @if($restaurant['user_id'] === Auth::id())
+                <add-restaurant-image-form id='{{ $restaurant->id }}' image='{{ $restaurant->image_name }}'>
+                </add-restaurant-image-form>
+            @elseif(empty($restaurant['image_name']))
+                <p>画像はまだありません</p>
+            @else
+                <img class="restaurant-img mb-5" alt="" src="{{ $restaurant['image_name'] }}">
+            @endif
+            <v-card-title>{{ $restaurant['store_name'] }}</v-card-title>
+            <v-card-subtitle>{{ $restaurant['high_budget'] }}円~{{ $restaurant['low_budget'] }}円</v-card-subtitle>
+            <v-card-text class="text--primary">
+                <div>
+                    {{ config('data.prefecture')[$restaurant['prefecture_id']] }}
+                    {{ $restaurant['city'] }}
+                    {{ $restaurant['street_address'] }}
+                </div>
+                <div class="pl-10">
+                    @if (!$favorite_id)
+                        <favorite-component user-id='{{ Auth::id() }}' restaurant-id="{{ $restaurant->id }}" favorite-count="{{ count($restaurant->favorites) }}"></favorite-component>
+                    @else
+                        <favorite-component user-id='{{ Auth::id() }}' restaurant-id="{{ $restaurant->id }}" favorite-id="{{ $favorite_id }}" favorite-count="{{ count($restaurant->favorites) }}"></favorite-component>
+                    @endif
+                </div>
+            </v-card-text>
 
+            <v-card-actions>
+                <div class="p-3">
+                    @if(!empty($restaurant['category_id_1']))
+                        <v-btn class="ma-1" color="warning" href="{{ route('search.category', $restaurant['category_id_1']) }}">{{ config('data.category')[$restaurant['category_id_1']] }}</v-btn>
+                    @endif
+                    @if(!empty($restaurant['category_id_2']))
+                        <v-btn class="ma-1" color="warning" href="{{ route('search.category', $restaurant['category_id_2']) }}">{{ config('data.category')[$restaurant['category_id_2']] }}</v-btn>
+                    @endif
+                    @if(!empty($restaurant['category_id_3']))
+                        <v-btn class="ma-1" color="warning" href="{{ route('search.category', $restaurant['category_id_3']) }}">{{ config('data.category')[$restaurant['category_id_3']] }}</v-btn>
+                    @endif
+                    @if(!empty($restaurant['category_id_4']))
+                        <v-btn class="ma-1" color="warning" href="{{ route('search.category', $restaurant['category_id_4']) }}">{{ config('data.category')[$restaurant['category_id_4']] }}</v-btn>
+                    @endif
+                    @if(!empty($restaurant['category_id_5']))
+                        <v-btn class="ma-1" color="warning" href="{{ route('search.category', $restaurant['category_id_5']) }}">{{ config('data.category')[$restaurant['category_id_5']] }}</v-btn>
+                    @endif
+                </div>
+                <v-spacer></v-spacer>
+            </v-card-actions>
+
+            <v-expand-transition>
+                <div>
+                    <v-divider></v-divider>
+                    <v-card-text>
+                        {!! nl2br(e($restaurant['store_infomation'])) !!}
+                    </v-card-text>
+                    <v-card-text>
+                        @if($restaurant['user_id'] === Auth::id())
+                            <div>
+                                {{ Form::open(['route' => ['restaurant.delete', $restaurant['id'], Auth::id()], 'method' => 'delete']) }}
+                                    {!! Form::button('削除する', ['class' => 'btn btn-danger', 'type' => 'submit'])!!}
+                                {{ Form::close() }}
+                            </div>
+                        @endif
+                    </v-card-text>
+                </div>
+            </v-expand-transition>
+        </v-card>
+
+    </div>
 </div>
 @endsection

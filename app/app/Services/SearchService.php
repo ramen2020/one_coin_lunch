@@ -42,7 +42,7 @@ class SearchService
     // 絞り込み検索の条件から店舗を抽出する
     public static function querySearchFilter($request_search, $restaurant_query)
     {
-        $restaurant_query->latest('created_at')->where('status', 2);
+        $restaurant_query->latest('created_at');
 
         if ($request_search['prefecture']) {
             $restaurant_query->where('restaurants' . '.prefecture_id', $request_search['prefecture']);

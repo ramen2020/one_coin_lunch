@@ -29,7 +29,7 @@ class StoreRestaurantRequest extends FormRequest
             'prefecture' => 'required',
             'city' => 'required|string',
             'street_address' => 'required|string',
-            // 'image_name' => 'mimes:jpg,jpeg,png,gif',
+            // 'image_name' => 'required|file|mimes:jpg,jpeg,png,gif',
             'high_budget' => 'integer|gt:low_budget',
             'low_budget' => 'integer',
             'latitude' => 'nullable|numeric',

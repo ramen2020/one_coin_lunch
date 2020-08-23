@@ -45,7 +45,7 @@ function moldingMapData(data) {
         infoWindow[i] = new google.maps.InfoWindow({
             content: '<div class="hukidashi">' +
                         '<img class="mb-4 hukidashi-img" ' +
-                        'src="image/hamburger-1238246_1280.jpg" alt="1200❌300">' +
+                        'src="' + markerData[i]['image_name'] + '" alt="店舗の画像">' +
                         '<h4 class="panel-title"><a href="/restaurant/show/' + markerData[i]['id'] +
                         '" target="_blank">' +
                         markerData[i]['store_name'] + '</a></h4>' +

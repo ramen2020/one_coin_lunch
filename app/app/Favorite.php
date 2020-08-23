@@ -41,6 +41,7 @@ class Favorite extends Model
         return $this->where('id', $favorite_id)->delete();
     }
 
+    //　いいね数える
     public function getFavoritedCount($restaurant_id)
     {
         $favorited_count = count($this->where('restaurant_id', $restaurant_id)->get());

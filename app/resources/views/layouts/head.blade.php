@@ -12,6 +12,7 @@
     <meta property="og:url" content="ページのURL">
     <meta property="og:image" content="ページのアイキャッチ画像">
     <meta property="og:site_name" content="サイト名">
+    <link rel="shortcut icon" href="{{ asset('/favicon.ico') }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Scripts -->
@@ -23,4 +24,5 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css">
 </head>

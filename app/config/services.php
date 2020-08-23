@@ -34,6 +34,10 @@ return [
         'client_id'     => env('TWITTER_API_KEY'),
         'client_secret' => env('TWITTER_API_SECRET'),
         'redirect'      => env('TWITTER_CALLBACKURL'),
-    ]
+    ],
+
+    'google-map' => [
+        'api' => env('GMAP_API_KEY'),
+    ],
 
 ];

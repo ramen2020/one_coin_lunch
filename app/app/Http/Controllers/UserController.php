@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use App\Http\Requests\AddImageRequest;
+use App\Http\Requests\AddUserImageRequest;
 use App\Http\Requests\UpdateUserProfileRequest;
 use Illuminate\Support\Facades\Storage;
 
@@ -19,14 +19,14 @@ class UserController extends Controller
     public function profile($id)
     {
         $user = $this->user->getUserById($id);
-        $restaurants = $user->restaurants->toArray();
+        $restaurants = $user->restaurants()->with('favorites')->get();
         return view('user.show', compact('user', 'restaurants'));
     }
 
     public function myProfile()
     {
         $user = \Auth::user();
-        $restaurants = $user->restaurants->toArray();
+        $restaurants = \Auth::user()->restaurants()->with('favorites')->get();
         return view('user.show', compact('user', 'restaurants'));
     }
 
@@ -36,7 +36,7 @@ class UserController extends Controller
         return view('user.edit', compact('user'));
     }
 
-    public function updateImage(AddImageRequest $request)
+    public function updateImage(AddUserImageRequest $request)
     {
         $image = $request->file('file');
         $id = $request->input('userId');
@@ -59,8 +59,13 @@ class UserController extends Controller
         return redirect()->route('user.myProfile');
     }
 
-    public function destroy($id)
+    public function destroy()
     {
-        //
+        $user = \Auth::user();
+        $user->restaurants()->delete();
+        $user->favorites()->delete();
+        \Auth::logout();
+        $user->delete();
+        return redirect('/');
     }
 }

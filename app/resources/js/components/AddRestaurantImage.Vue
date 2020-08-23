@@ -67,7 +67,6 @@ export default {
           this.dialog = false
         })
         .catch(err => {
-          console.log(err)
           this.errMsg = "※ エラーです。違う画像を投稿してください。"
         });
     }

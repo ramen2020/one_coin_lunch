@@ -28,17 +28,22 @@
             </div>
             @if($user['id'] === Auth::id())
                 <a href="{{ route('user.editMyProfile') }}"><v-btn color="primary">プロフィールを編集</v-btn></a>
+                <div>
+                    {{ Form::open(['route' => 'user.delete', 'method' => 'delete']) }}
+                        {!! Form::button('退会する', ['class' => 'btn btn-danger mt-3', 'type' => 'submit'])!!}
+                    {{ Form::close() }}
+                </div>
             @endif
         </div>
     </div>
     <div class="mt-5">
         <h4 class="border-bottom mb-3 pl-2 pb-2">投稿</h4>
         <div class="row">
-        @if($restaurants)
+        @if(!empty($restaurants[0]))
             @foreach($restaurants as $restaurant)
                 <div class="col-lg-3 mb-2">
                     <div class="card h-100">
-                        <a href="{{ $restaurant['image_name'] }}"><img class="card-img-top" src="../../image/morning-brew-eFSUPUeYs3w-unsplash.jpg" alt="700❌400"></a>
+                        <img class="card-img-top" src="{{ $restaurant['image_name'] }}" alt="店舗の画像">
                         <div class="card-body">
                             <h4>
                                 <a href="/restaurant/show/{{ $restaurant['id'] }}">{{ $restaurant['store_name'] }}</a>
@@ -65,7 +70,12 @@
                                 @if(!empty($restaurant['category_id_5']))
                                     <a href="{{ route('search.category', $restaurant['category_id_5']) }}" class="btn btn-primary card-text m-1">{{ config('data.category')[$restaurant['category_id_5']] }}</a>
                                 @endif
-                        <div>
+                            <div>
+                            <div class="d-flex justify-content-end">
+                                <v-btn class="ma-2" text icon color="red lighten-2">
+                                    <v-icon class="mr-1">mdi-thumb-up</v-icon>{{ $restaurant->favorites()->count() }}
+                                </v-btn>
+                            </div>
                         </div>
                     </div></div></div>
                 </div>

@@ -109,4 +109,8 @@ return [
         46 => '鹿児島',
         47 => '沖縄',
     ],
+
+    'no_image_photo' => [
+        1 => env('NO_IMAGE_PHOTO'),
+    ]
 ];

@@ -1,12 +1,13 @@
 @include('layouts.head')
 <body>
-    <div id="app">
+    <v-app id="app">
+        @include('alert.flash_message')
         @include('header.header')
-        <main class="my-5">
+        <main class="my-5 display-min-height">
             @yield('content')
         </main>
         @include('footer.footer')
-    </div>
+    </v-app>
 </body>
 
-</html>
+

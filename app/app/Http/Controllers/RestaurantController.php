@@ -7,7 +7,6 @@ use App\Favorite;
 use App\Services\RestaurantService;
 use App\Http\Requests\Restaurant\StoreRestaurantRequest;
 use App\Http\Requests\Restaurant\AddRestaurantImageRequest;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class RestaurantController extends Controller
@@ -32,18 +31,7 @@ class RestaurantController extends Controller
             ->orderby('restaurants.created_at', 'DESC')
             ->paginate(6);
 
-        $restaurants = $restaurants->toArray();
-
-        foreach($restaurants['data'] as &$restaurant) {
-            foreach($restaurant['favorites'] as $favorite) {
-                if($favorite['user_id'] == \Auth::id()) {
-                    $restaurant['is_favorite'] = true;
-                    $restaurant['favorite_id_by_auth'] = $favorite['id'];
-                }
-            }
-        }
-
-        unset($restaurant);
+        $restaurants = $this->restaurant_service->addFavoriteIdToRestaurants($restaurants);
 
         return response()->json(['restaurants' => $restaurants, 'catogory_list' => $category_list]);
     }
@@ -76,7 +64,7 @@ class RestaurantController extends Controller
         $create_restaurant = $this->restaurant_service->setCategoryId($request)
             ->createRestaurant($request);
             return redirect()->route('restaurant.show', $create_restaurant['id'])
-                ->with('restaurant_create_message', '投稿しました。画像編集から画像を追加してください。');
+                ->with('restaurant_message', '投稿しました。画像編集から画像を追加してください。');
     }
 
     public function updateImage(AddRestaurantImageRequest $request)
@@ -99,15 +87,11 @@ class RestaurantController extends Controller
 
     public function favoriteList()
     {
-        $user = \Auth::user();
-        $favorite_restaurants = \Auth::user()->favorites()->with('restaurant')->get();
-        $restaurants = [];
-
-        foreach($favorite_restaurants as $favorite) {
-            $favorite->restaurant['favorite_id'] = $favorite['id'];
-            array_push($restaurants, $favorite->restaurant);
-        }
-
+        $user_id = \Auth::id();
+        $restaurants = $this->restaurant->whereHas('favorites', function($query) use ($user_id) {
+            $query->where('user_id', $user_id);
+        })->with(['user', 'favorites'])->get();
+        $restaurants = $this->restaurant_service->addFavoriteIdToRestaurants($restaurants);
         return view('restaurant.favorite', compact('restaurants'));
     }
 
@@ -120,6 +104,12 @@ class RestaurantController extends Controller
         if($request_user_id === $user_id) {
             $restaurant = $this->restaurant->find($restaurant_id);
             $restaurant->favorites()->delete();
+            if(!empty($restaurant->image_name) &&
+                $restaurant->image_name !== config('data.no_image_photo')[1]) {
+                    $image_name = basename($restaurant->image_name);
+                    $image_path = "/restaurant-images/" .$image_name;
+                    Storage::disk('s3')->delete($image_path);
+            }
             $restaurant->delete();
         }
 

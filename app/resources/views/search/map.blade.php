@@ -12,8 +12,11 @@
 
     <div id="app"></div>
     <div id="map"></div>
+
+    @include('footer.footer')
+
     <script type="text/javascript" src="/js/google-map.js"></script>
-    <!-- <script src=""　async defer></script> -->
+    <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key={{ config('services.google-map.api') }}&callback=initMap"　async defer></script>
 </body>
 
 </html>

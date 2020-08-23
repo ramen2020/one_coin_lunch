@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-    <h2 class="mb-5">投稿</h2>
+    <h2 class="mb-5">お勧めのランチを紹介しよう！</h2>
     @if ($errors->any())
         <p id="restaurant-create-error" class="alert alert-danger">※ 入力項目を確認してください。</p>
     @endif
@@ -58,11 +58,14 @@
         </div>
         <div class="form-group">
             <label>緯度</label>
-            {{ Form::text('latitude', null, ['class' => 'form-control']) }}
+            {{ Form::text('latitude', null, ['class' => 'form-control', 'placeholder' => 'ex) 35.705623']) }}
         </div>
         <div class="form-group">
             <label>経度</label>
-            {{ Form::text('longitude', null, ['class' => 'form-control']) }}
+            {{ Form::text('longitude', null, ['class' => 'form-control', 'placeholder' => 'ex) 139.751919']) }}
+            <span class="ml-2">※ 緯度と経度は、入力すると地図で探すに表示され、検索されやすくなります。
+                Google mapなどで調べ、入力してください。
+            </span>
         </div>
         <div class="text-center mt-5">
             {!! Form::button('確認', ['class' => 'btn btn-success py-2 px-5','type' => 'submit']) !!}

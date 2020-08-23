@@ -29,9 +29,9 @@
             @error('low_budget')<span class="required">{{ $message }}</span>@enderror
             @error('high_budget')<span class="required">{{ $message }}</span>@enderror
             <div class="row form-group mx-2">
-                {{ Form::select('low_budget', config('data.low_budget'), null, ['class' => 'col-3 custom-select', 'placeholder' => '']) }}
+                {{ Form::select('low_budget', config('data.low_budget'), null, ['class' => 'p-2 col-3 custom-select', 'placeholder' => '']) }}
                 <p class="mt-2 mx-2">〜</p>
-                {{ Form::select('high_budget', config('data.high_budget'), null, ['class' => 'col-3 custom-select', 'placeholder' => '']) }}
+                {{ Form::select('high_budget', config('data.high_budget'), null, ['class' => 'p-2 col-3 custom-select', 'placeholder' => '']) }}
             </div>
         </div>
         <div class="form-group">

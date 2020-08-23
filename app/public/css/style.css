@@ -2,6 +2,15 @@
   display: none;
 }
 
+.display-min-height {
+  min-height: 600px;
+}
+
+/* ボタンをクリックした時に表示される枠線を消す */
+.border-none:focus {
+	outline:0;
+}
+
 .required {
   margin-left: 5px;
   color: #ff6347;
@@ -39,7 +48,54 @@ body {
 
 .hukidashi-img {
   width: 300px;
+  height: 200px;
+}
+
+.prefecture-img {
+  width: 100%;
+  height: 80px;
+}
+
+.padding-none {
+  padding: 0px;
+}
+
+.restaurant-img {
+  width: 300px;
+  height: 200px;
+}
+
+
+.avatar-img, .avatar-img-preview {
+  border-radius: 100%;
+  width: 300px;
   height: 300px;
+}
+
+.avatar-img-icon {
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+}
+
+.image-form-btn {
+  cursor: pointer;
+  color: white;
+  background-color: #f29500;
+  padding: 6px;
+  border-radius: 12px;
+}
+
+.restaurant-img-preview {
+  width: 390px;
+  height: 260px;
+}
+
+.mb-50 {
+  margin-bottom: 50px;
+}
+.gm-style-iw {
+  max-width: 400px !important;
 }
 
 @media screen and (max-width: 640px) {
@@ -48,12 +104,27 @@ body {
   }
   .hukidashi-img {
       width: 180px;
-      height: 180px;
+      height: 120px;
+  }
+
+  .restaurant-img-preview {
+    width: 240px;
+    height: 160px;
   }
 
   .hukidashi {
       width: 180px;
       max-height: 500px;
+  }
+
+  .avatar-img-preview {
+    width: 220px;
+    height: 220px;
+    text-align: center;
+  }
+
+  .display-none-sp {
+    display: none;
   }
 
 }

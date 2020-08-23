@@ -1,5 +1,4 @@
 <template>
-
   <v-row justify="center">
     <p v-if="image === ''" class="mr-5">プロフィール画像はまだありません</p>
     <img v-else class="avatar-img mb-5" alt="" v-bind:src='image'>
@@ -25,7 +24,7 @@
         </form>
       </v-card>
     </v-dialog>
-    <v-btn color="primary" @click.stop="dialog = true">
+    <v-btn class="ma-4" color="primary" @click.stop="dialog = true">
       画像編集
     </v-btn>
   </v-row>
@@ -63,12 +62,11 @@ export default {
         .then(response =>{
           this.image = response.data
           this.userImage = null,
-          this.addImage = null,
+          this.addImage = null
           this.dialog = false
         })
         .catch(err => {
-          console.log(err)
-          this.errMsg = "※ エラーです。違う画像を投稿してください。"
+          this.errMsg = "※ エラーです。容量の小さい画像など、違う画像を投稿してください。"
         });
     }
   }

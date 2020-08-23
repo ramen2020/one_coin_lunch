@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','twitter_id','twitter_nickname','twitter_avator', 'profile_image'
+        'name', 'email', 'password', 'introduction', 'twitter_id','twitter_nickname','twitter_avator', 'profile_image'
     ];
 
     /**
@@ -44,6 +44,11 @@ class User extends Authenticatable
     public function restaurants()
     {
         return $this->hasMany('App\Restaurant');
+    }
+
+    public function favorites()
+    {
+        return $this->hasMany('App\Favorite', 'user_id');
     }
 
     // idからユーザーを取得

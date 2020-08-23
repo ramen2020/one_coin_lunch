@@ -22,7 +22,7 @@
             @include('sidebar.sidebar')
         </div>
 
-        <div class="col-lg-9">
+        <div class="col-lg-10">
             <div class="new-restaurants">
                 <div class="row">
                     @if(Auth::user())

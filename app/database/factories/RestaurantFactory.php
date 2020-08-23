@@ -22,7 +22,6 @@ $factory->define(Restaurant::class, function (Faker $faker) {
 
     return [
         'user_id' => $faker->numberBetween($min = 1, $max = 5),
-        'status' => $faker->numberBetween($min = 1, $max = 2),
         'store_name' => $faker->name,
         'store_infomation' => $faker->realText(100),
         'address' => config('data.prefecture')[$prefecture_id] .$faker->city .$faker->streetAddress,

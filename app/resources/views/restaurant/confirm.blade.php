@@ -73,7 +73,7 @@
         <div class="row">
             <div class="col-12">
                 {!! Form::submit('戻る', ['name' => 'submit', 'class' => 'btn btn-secondary float-right']) !!}
-                {!! Form::submit('申請する', ['name' => 'submit', 'class' => 'btn btn-success float-right mr-3']) !!}
+                {!! Form::submit('投稿する', ['name' => 'submit', 'class' => 'btn btn-success float-right mr-3']) !!}
             </div>
         </div>
     {{ Form::close() }}

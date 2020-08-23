@@ -17,34 +17,33 @@ export default {
   props: ['userId'],
   data() {
     return {
-        page:1,
-        restaurants: [],
-        categoryList: [],
+      page:1,
+      restaurants: [],
+      categoryList: [],
     };
   },
   methods: {
     async infiniteHandler($state) {
-        const response = await axios.get('/api/restaurants/new?page=${this.page}',{
-            params: {
-                page: this.page,
-                per_page: 1,
-            }
-          }).then(({data}) => {
-            this.categoryList.push(data.catogory_list)
+      const response = await axios.get('/api/restaurants/new?page=${this.page}',{
+        params: {
+          page: this.page,
+          per_page: 1,
+        }
+      }).then(({data}) => {
+        this.categoryList.push(data.catogory_list)
 
-            setTimeout(() => {
-              if (this.page <= data.restaurants.data.length) {
-                console.log(data.restaurants)
-                  this.page += 1
-                  this.restaurants.push(...data.restaurants.data)
-                  $state.loaded()
-              } else {
-                  $state.complete()
-              }
-            }, 800)
-          }).catch((err) => {
+        setTimeout(() => {
+          if (this.page <= data.restaurants.data.length) {
+            this.page += 1
+            this.restaurants.push(...data.restaurants.data)
+            $state.loaded()
+          } else {
             $state.complete()
-          });
+          }
+        }, 800)
+      }).catch((err) => {
+        $state.complete()
+      });
     },
   }
 };
