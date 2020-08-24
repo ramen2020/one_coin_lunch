@@ -3,8 +3,6 @@ FROM php:7.3-fpm-alpine
 COPY app /var/www/html
 COPY docker/php/php.ini /usr/local/etc/php/php.ini
 
-WORKDIR /var/www/html
-
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /composer
 
@@ -18,4 +16,7 @@ RUN set -x && \
     chmod -R a+w storage/ bootstrap/cache
 
 RUN apk add --update nodejs nodejs-npm
-RUN npm install && npm run dev
+
+WORKDIR /var/www/html
+
+RUN npm install
