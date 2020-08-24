@@ -61,13 +61,13 @@
         @if(!empty($restaurant['latitude']))
             <div class="form-group">
                 <label>緯度</label>
-                {{ Form::text('latitude', null, ['class' => 'form-control', 'readonly']) }}
+                {{ Form::text('latitude', $restaurant['latitude'], ['class' => 'form-control', 'readonly']) }}
             </div>
         @endif
         @if(!empty($restaurant['longitude']))
             <div class="form-group">
                 <label>経度</label>
-                {{ Form::text('longitude', null, ['class' => 'form-control', 'readonly']) }}
+                {{ Form::text('longitude', $restaurant['longitude'], ['class' => 'form-control', 'readonly']) }}
             </div>
         @endif
         <div class="row">
