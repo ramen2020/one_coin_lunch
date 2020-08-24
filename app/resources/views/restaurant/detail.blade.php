@@ -23,7 +23,7 @@
                 <img class="restaurant-img mb-5" alt="" src="{{ $restaurant['image_name'] }}">
             @endif
             <v-card-title>{{ $restaurant['store_name'] }}</v-card-title>
-            <v-card-subtitle>{{ $restaurant['high_budget'] }}円~{{ $restaurant['low_budget'] }}円</v-card-subtitle>
+            <v-card-subtitle>{{ $restaurant['low_budget'] }}円~{{ $restaurant['high_budget'] }}円</v-card-subtitle>
             <v-card-text class="text--primary">
                 <div>
                     {{ config('data.prefecture')[$restaurant['prefecture_id']] }}

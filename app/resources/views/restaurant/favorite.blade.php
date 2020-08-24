@@ -21,7 +21,7 @@
                                         <a href="/restaurant/show/{{ $restaurant['id'] }}">{{ $restaurant['store_name'] }}</a>
                                     </h4>
                                     <div>
-                                        {{ $restaurant['high_budget'] }}円~{{ $restaurant['low_budget'] }}円
+                                        {{ $restaurant['low_budget'] }}円~{{ $restaurant['high_budget'] }}円
                                     </div>
                                     <p>
                                         {{ $restaurant['address'] }}

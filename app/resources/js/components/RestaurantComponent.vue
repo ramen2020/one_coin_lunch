@@ -8,7 +8,7 @@
     <v-card-title>
       <a v-bind:href="`/restaurant/show/${restaurant.id}`">{{ restaurant.store_name }}</a>
     </v-card-title>
-    <v-card-subtitle>{{ restaurant.high_budget }}円~{{ restaurant.low_budget }}円</v-card-subtitle>
+    <v-card-subtitle>{{ restaurant.low_budget }}円~{{ restaurant.high_budget }}円</v-card-subtitle>
     <v-card-text class="text--primary">
         <div>{{ restaurant.address }}</div>
         <div><a v-bind:href="`/user/profile/${restaurant.user.id}`">{{ restaurant.user.name }}</a></div>
