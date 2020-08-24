@@ -28,7 +28,7 @@
                                         <a href="/restaurant/show/{{ $restaurant['id'] }}">{{ $restaurant['store_name'] }}</a>
                                     </h4>
                                     <p>
-                                        {{ $restaurant['high_budget'] }}円~{{ $restaurant['low_budget'] }}円
+                                        {{ $restaurant['low_budget'] }}円~{{ $restaurant['high_budget'] }}円
                                     </p>
                                     <p>
                                         {{ $restaurant['address'] }}
@@ -59,14 +59,22 @@
                                         @endif
                                     </div>
                                     <div class="d-flex justify-content-end">
-                                        @if ($restaurant['is_favorite'])
-                                            <favorite-component user-id='{{ Auth::id() }}' restaurant-id="{{ $restaurant['id'] }}"
-                                                favorite-id="{{ $restaurant['favorite_id_by_auth'] }}" favorite-count="{{ count($restaurant['favorites']) }}">
-                                            </favorite-component>
+                                        @if (Auth::user())
+                                            @if ($restaurant['is_favorite'])
+                                                <favorite-component user-id='{{ Auth::id() }}' restaurant-id="{{ $restaurant['id'] }}"
+                                                    favorite-id="{{ $restaurant['favorite_id_by_auth'] }}" favorite-count="{{ count($restaurant['favorites']) }}">
+                                                </favorite-component>
+                                            @else
+                                                <favorite-component user-id='{{ Auth::id() }}' restaurant-id="{{ $restaurant['id'] }}"
+                                                    favorite-count="{{ count($restaurant['favorites']) }}">
+                                                </favorite-component>
+                                            @endif
                                         @else
-                                            <favorite-component user-id='{{ Auth::id() }}' restaurant-id="{{ $restaurant['id'] }}"
-                                                favorite-count="{{ count($restaurant['favorites']) }}">
-                                            </favorite-component>
+                                            <div class="d-flex justify-content-end mt-3">
+                                                <v-icon color="red" class="material-icons mr-2">
+                                                    favorite
+                                                </v-icon>{{ count($restaurant['favorites']) }}
+                                            </div>
                                         @endif
                                     </div>
                                 </div>

@@ -49,32 +49,38 @@
                                 <a href="/restaurant/show/{{ $restaurant['id'] }}">{{ $restaurant['store_name'] }}</a>
                             </h4>
                             <p>
-                            {{ $restaurant['high_budget'] }}円~{{ $restaurant['low_budget'] }}円
+                                {{ $restaurant['low_budget'] }}円~{{ $restaurant['high_budget'] }}円
                             </p>
                             <p>
                                 {{ $restaurant['address'] }}
                             </p>
                             <div>
                                 @if(!empty($restaurant['category_id_1']))
-                                    <a href="{{ route('search.category', $restaurant['category_id_1']) }}" class="btn btn-primary card-text m-1">{{ config('data.category')[$restaurant['category_id_1']] }}</a>
+                                    <v-btn href="{{ route('search.category', $restaurant['category_id_1']) }}" class="warning card-text m-1">{{ config('data.category')[$restaurant['category_id_1']] }}</v-btn>
                                 @endif
                                 @if(!empty($restaurant['category_id_2']))
-                                    <a href="{{ route('search.category', $restaurant['category_id_2']) }}"　class="btn btn-primary card-text m-1">{{ config('data.category')[$restaurant['category_id_2']] }}</a>
+                                    <v-btn href="{{ route('search.category', $restaurant['category_id_2']) }}"　class="warning card-text m-1">{{ config('data.category')[$restaurant['category_id_2']] }}</v-btn>
                                 @endif
                                 @if(!empty($restaurant['category_id_3']))
-                                    <a href="{{ route('search.category', $restaurant['category_id_3']) }}"　class="btn btn-primary card-text m-1">{{ config('data.category')[$restaurant['category_id_3']] }}</a>
+                                    <v-btn href="{{ route('search.category', $restaurant['category_id_3']) }}"　class="warning card-text m-1">{{ config('data.category')[$restaurant['category_id_3']] }}</v-btn>
                                 @endif
                                 @if(!empty($restaurant['category_id_4']))
-                                    <a href="{{ route('search.category', $restaurant['category_id_4']) }}" class="btn btn-primary card-text m-1">{{ config('data.category')[$restaurant['category_id_4']] }}</a>
+                                    <v-btn href="{{ route('search.category', $restaurant['category_id_4']) }}" class="warning card-text m-1">{{ config('data.category')[$restaurant['category_id_4']] }}</v-btn>
                                 @endif
                                 @if(!empty($restaurant['category_id_5']))
-                                    <a href="{{ route('search.category', $restaurant['category_id_5']) }}" class="btn btn-primary card-text m-1">{{ config('data.category')[$restaurant['category_id_5']] }}</a>
+                                    <v-btn href="{{ route('search.category', $restaurant['category_id_5']) }}" class="warning card-text m-1">{{ config('data.category')[$restaurant['category_id_5']] }}</v-btn>
                                 @endif
                             <div>
                             <div class="d-flex justify-content-end">
-                                <v-btn class="ma-2" text icon color="red lighten-2">
-                                    <v-icon class="mr-1">mdi-thumb-up</v-icon>{{ $restaurant->favorites()->count() }}
-                                </v-btn>
+                                @if ($restaurant['is_favorite'])
+                                    <favorite-component user-id='{{ Auth::id() }}' restaurant-id="{{ $restaurant['id'] }}"
+                                        favorite-id="{{ $restaurant['favorite_id_by_auth'] }}" favorite-count="{{ count($restaurant['favorites']) }}">
+                                    </favorite-component>
+                                @else
+                                    <favorite-component user-id='{{ Auth::id() }}' restaurant-id="{{ $restaurant['id'] }}"
+                                        favorite-count="{{ count($restaurant['favorites']) }}">
+                                    </favorite-component>
+                                @endif
                             </div>
                         </div>
                     </div></div></div>

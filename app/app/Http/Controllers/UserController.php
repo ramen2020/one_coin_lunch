@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Services\RestaurantService;
 use App\Http\Requests\AddUserImageRequest;
 use App\Http\Requests\UpdateUserProfileRequest;
 use Illuminate\Support\Facades\Storage;
@@ -10,23 +11,28 @@ use Illuminate\Support\Facades\Storage;
 class UserController extends Controller
 {
     protected $user;
+    protected $restaurant_service;
 
-    public function __construct(User $user)
+    public function __construct(User $user, RestaurantService $restaurant_service)
     {
         $this->user = $user;
+        $this->restaurant_service = $restaurant_service;
     }
 
     public function profile($id)
     {
         $user = $this->user->getUserById($id);
-        $restaurants = $user->restaurants()->with('favorites')->get();
+        $set_restaurants = $user->restaurants()->with('favorites')->get();
+        $restaurants = $this->restaurant_service->addFavoriteIdToRestaurants($set_restaurants);
+
         return view('user.show', compact('user', 'restaurants'));
     }
 
     public function myProfile()
     {
         $user = \Auth::user();
-        $restaurants = \Auth::user()->restaurants()->with('favorites')->get();
+        $set_restaurants = $user->restaurants()->with('favorites')->get();
+        $restaurants = $this->restaurant_service->addFavoriteIdToRestaurants($set_restaurants);
         return view('user.show', compact('user', 'restaurants'));
     }
 
