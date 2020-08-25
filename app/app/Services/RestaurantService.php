@@ -52,7 +52,7 @@ class RestaurantService
         $create_restaurant->store_name = $request['store_name'];
         $create_restaurant->store_infomation = $request['store_infomation'];
         $create_restaurant->address =
-            config('data.prefecture')[$request['prefecture']] .$request['city'] .$request['street_address'];
+            config('data.prefecture')[$request['prefecture']] . $request['city'] . $request['street_address'];
         $create_restaurant->prefecture_id = $request['prefecture'];
         $create_restaurant->city = $request['city'];
         $create_restaurant->street_address = $request['street_address'];
@@ -71,9 +71,34 @@ class RestaurantService
         return $create_restaurant;
     }
 
+    // 店舗の更新
+    public function updateRestaurant($request, $restaurant)
+    {
+        $update_restaurant = $restaurant;
+        $update_restaurant->store_name = $request['store_name'];
+        $update_restaurant->store_infomation = $request['store_infomation'];
+        $update_restaurant->address =
+            config('data.prefecture')[$request['prefecture']] . $request['city'] . $request['street_address'];
+        $update_restaurant->prefecture_id = $request['prefecture'];
+        $update_restaurant->city = $request['city'];
+        $update_restaurant->street_address = $request['street_address'];
+        $update_restaurant->high_budget = $request['high_budget'];
+        $update_restaurant->low_budget = $request['low_budget'];
+        $update_restaurant->latitude = !empty($request['latitude']) ? $request['latitude'] : null;
+        $update_restaurant->longitude = !empty($request['longitude']) ? $request['longitude'] : null;
+        $update_restaurant->category_id_1 = !empty($this->category_array[0]) ? $this->category_array[0] : null;
+        $update_restaurant->category_id_2 = !empty($this->category_array[1]) ? $this->category_array[1] : null;
+        $update_restaurant->category_id_3 = !empty($this->category_array[2]) ? $this->category_array[2] : null;
+        $update_restaurant->category_id_4 = !empty($this->category_array[3]) ? $this->category_array[3] : null;
+        $update_restaurant->category_id_5 = !empty($this->category_array[4]) ? $this->category_array[4] : null;
+        $update_restaurant->save();
+
+        return $update_restaurant;
+    }
+
     public function addFavoriteIdToRestaurants($restaurants)
     {
-        foreach($restaurants as $restaurant) {
+        foreach ($restaurants as $restaurant) {
             $this->addFavoriteIdToRestaurant($restaurant);
         }
         return $restaurants;
@@ -82,8 +107,8 @@ class RestaurantService
     // 自分がお気に入りしている店舗にfavoriteテーブルのidカラムの値を付与する
     public function addFavoriteIdToRestaurant(&$restaurant)
     {
-        foreach($restaurant['favorites'] as $favorite) {
-            if($favorite['user_id'] == \Auth::id()) {
+        foreach ($restaurant['favorites'] as $favorite) {
+            if ($favorite['user_id'] == \Auth::id()) {
                 $restaurant['is_favorite'] = true;
                 $restaurant['favorite_id_by_auth'] = $favorite['id'];
             }

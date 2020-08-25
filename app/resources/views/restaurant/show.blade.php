@@ -68,6 +68,9 @@
                     </v-card-text>
                     <v-card-text>
                         @if($restaurant['user_id'] === Auth::id())
+                            <div class="mb-5">
+                                <v-btn color="info" href="{{ route('restaurant.edit', $restaurant['id']) }}">編集する</v-btn>
+                            </div>
                             <div>
                                 {{ Form::open(['route' => ['restaurant.delete', $restaurant['id'], Auth::id()], 'method' => 'delete']) }}
                                     {!! Form::button('削除する', ['class' => 'btn btn-danger', 'type' => 'submit'])!!}

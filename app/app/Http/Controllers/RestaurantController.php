@@ -67,6 +67,27 @@ class RestaurantController extends Controller
                 ->with('restaurant_message', '投稿しました。画像編集から画像を追加してください。');
     }
 
+    public function edit($id)
+    {
+        $restaurant = $this->restaurant_service->getRestaurantById($id);
+        return view('restaurant.edit', compact('restaurant'));
+    }
+
+    public function update(StoreRestaurantRequest $request, $restaurant_id)
+    {
+        $set_restaurant = $this->restaurant_service->getRestaurantById($restaurant_id);
+
+        if($set_restaurant['user_id'] != \Auth::id()) {
+            return redirect('/');
+        }
+
+        $this->restaurant_service->setCategoryId($request)
+            ->updateRestaurant($request, $set_restaurant);
+
+        return redirect()->route('restaurant.show', $restaurant_id)
+            ->with('restaurant_message', '更新しました。');
+    }
+
     public function updateImage(AddRestaurantImageRequest $request)
     {
         $image = $request->file('file');
@@ -82,7 +103,7 @@ class RestaurantController extends Controller
         $user = \Auth::user();
         $favorite_id = @$this->favorite->getFavoriteId($user->id, $id)->id ?: null;
         $restaurant = $this->restaurant_service->getRestaurantById($id);
-        return view('restaurant.detail', compact('user', 'favorite_id', 'restaurant'));
+        return view('restaurant.show', compact('user', 'favorite_id', 'restaurant'));
     }
 
     public function favoriteList()
