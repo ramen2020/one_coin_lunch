@@ -28,11 +28,13 @@
             </div>
             @if($user['id'] === Auth::id())
                 <a href="{{ route('user.editMyProfile') }}"><v-btn color="primary">プロフィールを編集</v-btn></a>
-                <div>
-                    {{ Form::open(['route' => 'user.delete', 'method' => 'delete']) }}
-                        {!! Form::button('退会する', ['class' => 'btn btn-danger mt-3', 'type' => 'submit'])!!}
-                    {{ Form::close() }}
-                </div>
+                @if(Auth::id() !== 1)
+                    <div>
+                        {{ Form::open(['route' => 'user.delete', 'method' => 'delete']) }}
+                            {!! Form::button('退会する', ['class' => 'btn btn-danger mt-3', 'type' => 'submit'])!!}
+                        {{ Form::close() }}
+                    </div>
+                @endif
             @endif
         </div>
     </div>
