@@ -10,7 +10,6 @@ import InfiniteLoading from 'vue-infinite-loading';
 Vue.use(Vuetify);
 Vue.use(InfiniteLoading);
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('add-user-image-form', require('./components/AddUserImageForm.vue').default);
 Vue.component('add-restaurant-image-form', require('./components/AddRestaurantImage.vue').default);
 Vue.component('favorite-component', require('./components/FavoriteComponent.vue').default);
