@@ -15,11 +15,6 @@
                         {{ Form::text('name', $contact_content['name'], ['class' => 'form-control', 'readonly']) }}
                 </div>
                 <div class="control-group form-group">
-                        <label>電話番号</label>
-                        @error('tel')<span class="required">{{ $message }}</span>@enderror
-                        {{ Form::text('tel', $contact_content['tel'], ['class' => 'form-control', 'readonly']) }}
-                </div>
-                <div class="control-group form-group">
                         <label>メールアドレス</label><span class="required">※</span>
                         @error('email')<span class="required">{{ $message }}</span>@enderror
                         {{ Form::text('email', $contact_content['email'], ['class' => 'form-control', 'readonly']) }}

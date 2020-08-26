@@ -114,7 +114,7 @@ body {
   font-size:18px;
   padding:10px 10px 10px 5px;
   display:block;
-  width:300px;
+  width:700px;
   border:none;
   border-bottom:1px solid #757575;
 }
@@ -156,6 +156,12 @@ body {
   opacity:0.5;
 }
 
+#contact-textarea {
+  width: 700px;
+  height: 300px;
+  padding: 20px;
+}
+
 /* ログインフォーム（ここまで） */
 
 @media screen and (max-width: 640px) {
@@ -185,6 +191,14 @@ body {
 
   .display-none-sp {
     display: none;
+  }
+
+  .auth-input {
+    width: 300px;
+  }
+
+  #contact-textarea {
+    width: 300px;
   }
 
 }

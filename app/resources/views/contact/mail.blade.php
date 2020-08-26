@@ -6,10 +6,6 @@
 <p>【 お名前 】<br>
     {{ $content['name'] }}</p>
 
-<p>【 電話番号 】<br>
-    {{ $content['tel'] }}
-</p>
-
 <p>【 メールアドレス 】<br>
     {{ $content['email'] }}
 </p>

@@ -16,10 +16,6 @@
                         {{ Form::text('name', $contact_content['name'], ['class' => 'form-control', 'readonly']) }}
                 </div>
                 <div class="control-group form-group">
-                        <label>電話番号</label>
-                        {{ Form::text('tel', $contact_content['tel'], ['class' => 'form-control', 'readonly']) }}
-                </div>
-                <div class="control-group form-group">
                         <label>メールアドレス</label>
                         {{ Form::text('email', $contact_content['email'], ['class' => 'form-control', 'readonly']) }}
                 </div>

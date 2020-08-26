@@ -3,37 +3,64 @@
 @section('content')
 
 <div class="container">
-
     <div class="row">
-        <div class="col-lg-8 mb-4">
-            <h3 class="mb-5">お問い合わせ</h3>
-            {{ Form::open(['route' => 'contact.confirm', 'method' => 'post']) }}
-                <div class="control-group form-group">
-                        <label>お名前</label><span class="required">※</span>
+        <div class="border-bottom col-md-12">
+                <h3>Register<h3>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="mx-auto">
+            <div class="py-12">
+            <h3 class="mb-12">お問い合わせ</h3>
+            {!! Form::open(['route' => 'contact.confirm', 'method' => 'post']) !!}
+                <div class="row">
+                    <div class="group col-md-12">
+                        {{ Form::text('name', null, ['class' => 'auth-input', 'required']) }}
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label class="auth-label">お名前<span class="required">※</span></label>
                         @error('name')<span class="required">{{ $message }}</span>@enderror
-                        {{ Form::text('name', null, ['class' => 'form-control']) }}
+                    </div>
                 </div>
-                <div class="control-group form-group">
-                        <label>電話番号</label>
-                        @error('tel')<span class="required">{{ $message }}</span>@enderror
-                        {{ Form::text('tel', null, ['class' => 'form-control']) }}
+
+                <div class="row">
+                    <div class="group col-md-12">
+                        {{ Form::text('email', null, ['class' => 'auth-input', 'required']) }}
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label class="auth-label">メールアドレス<span class="required">※</span></label>
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
                 </div>
-                <div class="control-group form-group">
-                        <label>メールアドレス</label><span class="required">※</span>
-                        @error('email')<span class="required">{{ $message }}</span>@enderror
-                        {{ Form::text('email', null, ['class' => 'form-control']) }}
+
+                <div class="row">
+                    <div class="group col-md-12">
+                        {{ Form::textarea('content', null, ['id' => 'contact-textarea', 'class' => 'form-control auth-input', 'required']) }}
+                        </textarea>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label class="auth-label">お問い合わせ内容<span class="required">※</span></label>
+                        @error('content')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
                 </div>
-                <div class="control-group form-group">
-                    <label>お問い合わせ内容</label><span class="required">※</span>
-                    @error('content')<span class="required">{{ $message }}</span>@enderror
-                    {{ Form::textarea('content', null, ['class' => 'form-control']) }}
+
+                <div class="row">
+                    <div class="group col-md-12">
+                        {!! Form::button('確認', ['class' => 'btn btn-primary py-2 px-5', 'style' => 'width:100%;color:#fff;', 'type' => 'submit']) !!}
+                    </div>
                 </div>
-                {!! Form::button('確認', ['class' => 'btn btn-primary py-2 px-5','type' => 'submit']) !!}
             {{ Form::close() }}
         </div>
-
     </div>
-
 </div>
 
 @endsection
