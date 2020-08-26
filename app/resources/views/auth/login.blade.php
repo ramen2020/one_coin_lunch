@@ -13,7 +13,7 @@
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="row">
-                        <div class="group col-md-9 offset-md-3">
+                        <div class="group col-md-12">
                             <input input id="email" type="email" class="auth-input @error('email') is-invalid @enderror"
                                 name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                             <span class="highlight"></span>
@@ -29,7 +29,7 @@
 
 
                     <div class="row">
-                        <div class="group col-md-9 offset-md-3">
+                        <div class="group col-md-12">
                             <input id="password" type="password" class="auth-input @error('password') is-invalid @enderror"
                                 name="password" required autocomplete="current-password">
                             <span class="highlight"></span>

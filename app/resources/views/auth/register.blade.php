@@ -13,7 +13,7 @@
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
                     <div class="row">
-                        <div class="group col-md-9 offset-md-3">
+                        <div class="group col-md-12">
                             <input id="name" type="text" class="auth-input @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                             <span class="highlight"></span>
                             <span class="bar"></span>
@@ -27,7 +27,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <div class="group col-md-9 offset-md-3">
+                        <div class="group col-md-9">
                             <input id="email" type="email" class="auth-input @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
                             <span class="highlight"></span>
                             <span class="bar"></span>
@@ -41,7 +41,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <div class="group col-md-9 offset-md-3">
+                        <div class="group col-md-9">
                             <input id="password" type="password" class="auth-input @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                             <span class="highlight"></span>
                             <span class="bar"></span>
@@ -55,7 +55,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <div class="group col-md-9 offset-md-3">
+                        <div class="group col-md-9">
                             <input id="password-confirm" type="password" class="auth-input" name="password_confirmation" required autocomplete="new-password">
                             <span class="highlight"></span>
                             <span class="bar"></span>
