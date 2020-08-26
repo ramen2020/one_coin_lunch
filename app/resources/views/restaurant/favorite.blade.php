@@ -29,34 +29,34 @@
 
                                     <div>
                                         @if(!empty($restaurant['category_id_1']))
-                                            <v-btn color="primary" href="{{ route('search.category', $restaurant['category_id_1']) }}"
+                                            <v-btn color="warning" href="{{ route('search.category', $restaurant['category_id_1']) }}"
                                                 class="m-1">{{ config('data.category')[$restaurant['category_id_1']] }}</v-btn>
                                         @endif
                                         @if(!empty($restaurant['category_id_2']))
-                                            <v-btn color="primary" href="{{ route('search.category', $restaurant['category_id_2']) }}"
+                                            <v-btn color="warning" href="{{ route('search.category', $restaurant['category_id_2']) }}"
                                                 　class="m-1">{{ config('data.category')[$restaurant['category_id_2']] }}</v-btn>
                                         @endif
                                         @if(!empty($restaurant['category_id_3']))
-                                            <v-btn color="primary" href="{{ route('search.category', $restaurant['category_id_3']) }}"
+                                            <v-btn color="warning" href="{{ route('search.category', $restaurant['category_id_3']) }}"
                                                 　class="m-1">{{ config('data.category')[$restaurant['category_id_3']] }}</v-btn>
                                         @endif
                                         @if(!empty($restaurant['category_id_4']))
-                                            <v-btn color="primary" href="{{ route('search.category', $restaurant['category_id_4']) }}"
+                                            <v-btn color="warning" href="{{ route('search.category', $restaurant['category_id_4']) }}"
                                                 class="m-1">{{ config('data.category')[$restaurant['category_id_4']] }}</v-btn>
                                         @endif
                                         @if(!empty($restaurant['category_id_5']))
-                                            <v-btn color="primary" href="{{ route('search.category', $restaurant['category_id_5']) }}"
+                                            <v-btn color="warning" href="{{ route('search.category', $restaurant['category_id_5']) }}"
                                                 class="m-1">{{ config('data.category')[$restaurant['category_id_5']] }}</v-btn>
                                         @endif
                                     </div>
                                     <div class="d-flex justify-content-end">
                                         @if ($restaurant['is_favorite'])
-                                            <favorite-component user-id='{{ Auth::id() }}' restaurant-id="{{ $restaurant['id'] }}"
-                                                favorite-id="{{ $restaurant['favorite_id_by_auth'] }}" favorite-count="{{ count($restaurant['favorites']) }}">
+                                            <favorite-component :user-id='{{ Auth::id() }}' :restaurant-id="{{ $restaurant['id'] }}"
+                                                :favorite-id="{{ $restaurant['favorite_id_by_auth'] }}" :favorite-count="{{ count($restaurant['favorites']) }}">
                                             </favorite-component>
                                         @else
-                                            <favorite-component user-id='{{ Auth::id() }}' restaurant-id="{{ $restaurant['id'] }}"
-                                                favorite-count="{{ count($restaurant['favorites']) }}">
+                                            <favorite-component :user-id='{{ Auth::id() }}' :restaurant-id="{{ $restaurant['id'] }}"
+                                                :favorite-count="{{ count($restaurant['favorites']) }}">
                                             </favorite-component>
                                         @endif
                                     </div>

@@ -16,8 +16,20 @@
 
 <script>
 export default {
-  props: ['favoriteCount', 'restaurantId', 'userId', 'favoriteId'],
-
+  props: {
+    favoriteCount: {
+      type: [String, Number],
+    },
+    restaurantId: {
+      type: [String, Number],
+    },
+    userId: {
+      type: [String, Number],
+    },
+    favoriteId: {
+      type: [String, Number],
+    },
+  },
   data() {
     if (!this.favoriteId) {
       var isFavorite = false;

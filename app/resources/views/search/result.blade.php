@@ -61,12 +61,12 @@
                                     <div class="d-flex justify-content-end">
                                         @if (Auth::user())
                                             @if ($restaurant['is_favorite'])
-                                                <favorite-component user-id='{{ Auth::id() }}' restaurant-id="{{ $restaurant['id'] }}"
-                                                    favorite-id="{{ $restaurant['favorite_id_by_auth'] }}" favorite-count="{{ count($restaurant['favorites']) }}">
+                                                <favorite-component :user-id='{{ Auth::id() }}' :restaurant-id="{{ $restaurant['id'] }}"
+                                                    :favorite-id="{{ $restaurant['favorite_id_by_auth'] }}" :favorite-count="{{ count($restaurant['favorites']) }}">
                                                 </favorite-component>
                                             @else
-                                                <favorite-component user-id='{{ Auth::id() }}' restaurant-id="{{ $restaurant['id'] }}"
-                                                    favorite-count="{{ count($restaurant['favorites']) }}">
+                                                <favorite-component :user-id='{{ Auth::id() }}' :restaurant-id="{{ $restaurant['id'] }}"
+                                                    :favorite-count="{{ count($restaurant['favorites']) }}">
                                                 </favorite-component>
                                             @endif
                                         @else

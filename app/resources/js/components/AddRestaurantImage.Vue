@@ -5,23 +5,23 @@
     <v-dialog v-model="dialog" max-width="500">
       <v-card>
         <form class="form" @submit.prevent="submit">
-        <v-card-title class="headline ma-4">画像編集</v-card-title>
-        <v-card-text>
-          <p v-if="errMsg" class="required">{{ errMsg }}</p>
-            <label class="image-form-btn mt-5">
-              ＋写真を選択
-              <input type="file" style="display:none;" name="restaurantImage" accept="image/*" v-on:change="onFileChange">
-            </label>
-            <p>横：縦　3:2　の大きさを推奨します。</p>
-          <div v-if="addImage">
-            <img class="mt-5 restaurant-img-preview" v-bind:src="addImage">
-          </div>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn type="submit" color="secondary" dark>変更する</v-btn>
-          <v-btn text @click="dialog = false">やめる</v-btn>
-        </v-card-actions>
+          <v-card-title class="headline ma-4">画像編集</v-card-title>
+          <v-card-text>
+            <p v-if="errMsg" class="required">{{ errMsg }}</p>
+              <label class="image-form-btn mt-5">
+                ＋写真を選択
+                <input type="file" style="display:none;" name="restaurantImage" accept="image/*" v-on:change="onFileChange">
+              </label>
+              <p>横：縦　3:2　の大きさを推奨します。</p>
+            <div v-if="addImage">
+              <img class="mt-5 restaurant-img-preview" v-bind:src="addImage">
+            </div>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn type="submit" color="secondary" dark>変更する</v-btn>
+            <v-btn text @click="dialog = false">やめる</v-btn>
+          </v-card-actions>
         </form>
       </v-card>
     </v-dialog>
@@ -33,7 +33,14 @@
 
 <script>
 export default {
-  props: ['id','image'],
+  props: {
+    id: {
+      type: [String, Number],
+    },
+    image: {
+      type: String,
+    }
+  },
   data () {
     return {
       dialog: false,

@@ -26,7 +26,7 @@
             <div class="new-restaurants">
                 <div class="row">
                     @if(Auth::user())
-                        <restaurants-list-component user-id="{{ Auth::id() }}"></restaurants-list-component>
+                        <restaurants-list-component :user-id="{{ Auth::id() }}"></restaurants-list-component>
                     @else
                         <restaurants-list-component></restaurants-list-component>
                     @endif

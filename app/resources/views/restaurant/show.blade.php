@@ -15,7 +15,7 @@
 
         <v-card class="mx-auto col-lg-8" max-width="344">
             @if($restaurant['user_id'] === Auth::id())
-                <add-restaurant-image-form id='{{ $restaurant->id }}' image='{{ $restaurant->image_name }}'>
+                <add-restaurant-image-form :id='{{ $restaurant->id }}' image='{{ $restaurant->image_name }}'>
                 </add-restaurant-image-form>
             @elseif(empty($restaurant['image_name']))
                 <p>画像はまだありません</p>
@@ -32,15 +32,15 @@
                 </div>
                 <div class="pl-10">
                     @if (!$favorite_id)
-                        <favorite-component user-id='{{ Auth::id() }}' restaurant-id="{{ $restaurant->id }}" favorite-count="{{ count($restaurant->favorites) }}"></favorite-component>
+                        <favorite-component :user-id='{{ Auth::id() }}' :restaurant-id="{{ $restaurant->id }}" favorite-count="{{ count($restaurant->favorites) }}"></favorite-component>
                     @else
-                        <favorite-component user-id='{{ Auth::id() }}' restaurant-id="{{ $restaurant->id }}" favorite-id="{{ $favorite_id }}" favorite-count="{{ count($restaurant->favorites) }}"></favorite-component>
+                        <favorite-component :user-id='{{ Auth::id() }}' :restaurant-id="{{ $restaurant->id }}" :favorite-id="{{ $favorite_id }}" :favorite-count="{{ count($restaurant->favorites) }}"></favorite-component>
                     @endif
                 </div>
             </v-card-text>
 
             <v-card-actions>
-                <div class="p-3">
+                <div class="px-3">
                     @if(!empty($restaurant['category_id_1']))
                         <v-btn class="ma-1" color="warning" href="{{ route('search.category', $restaurant['category_id_1']) }}">{{ config('data.category')[$restaurant['category_id_1']] }}</v-btn>
                     @endif

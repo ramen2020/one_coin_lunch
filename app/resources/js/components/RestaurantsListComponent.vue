@@ -14,7 +14,11 @@
 
 <script>
 export default {
-  props: ['userId'],
+  props: {
+    userId: {
+      type: [String, Number],
+    }
+  },
   data() {
     return {
       page:1,

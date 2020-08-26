@@ -61,7 +61,17 @@
 
 <script>
 export default {
-  props: ['restaurant', 'userId', 'categoryList'],
+  props: {
+    restaurant: {
+      type: Object,
+    },
+    userId: {
+      type: [String, Number],
+    },
+    categoryList: {
+      type: Array,
+    },
+  },
   data() {
     return {
       noImage: "https://one-coin-lunch-images.s3-ap-northeast-1.amazonaws.com/icon/others/no_image.jpg"

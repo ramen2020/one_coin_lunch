@@ -32,7 +32,14 @@
 
 <script>
 export default {
-  props: ['id','image'],
+  props: {
+    id: {
+      type: [String, Number],
+    },
+    image: {
+      type: String,
+    }
+  },
   data () {
     return {
       dialog: false,
