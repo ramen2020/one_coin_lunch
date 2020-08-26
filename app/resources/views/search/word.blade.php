@@ -2,8 +2,6 @@
 
 @section('content')
 
-<!-- <img class="img-fluid mb-4" src="image/morning-brew-eFSUPUeYs3w-unsplash.jpg" alt="1200❌300"> -->
-
 <div class="container">
 
     <h1 class="mt-4 mb-3">ワンコインランチ

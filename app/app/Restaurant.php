@@ -53,8 +53,8 @@ class Restaurant extends Model
     {
         $restaurant_query = self::query();
         $restaurant_query->when($words, function ($query, $search) {
-                return SearchService::querySearchWord($query, $search);
-            });
+            return SearchService::querySearchWord($query, $search);
+        });
 
         $restaurants = $restaurant_query->get();
         return $restaurants;
@@ -67,9 +67,9 @@ class Restaurant extends Model
         $restaurant_query = self::query();
         $restaurant_query = SearchService::querySearchFilter($request_search, $restaurant_query);
         $restaurants = $restaurant_query->with(['user', 'favorites'])->get();
-        foreach($restaurants as &$restaurant) {
-            foreach($restaurant['favorites'] as $favorite) {
-                if($favorite['user_id'] == \Auth::id()) {
+        foreach ($restaurants as &$restaurant) {
+            foreach ($restaurant['favorites'] as $favorite) {
+                if ($favorite['user_id'] == \Auth::id()) {
                     $restaurant['is_favorite'] = true;
                     $restaurant['favorite_id_by_auth'] = $favorite['id'];
                 }

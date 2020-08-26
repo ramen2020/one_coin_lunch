@@ -1,204 +1,211 @@
 .display-none {
-  display: none;
+    display: none;
 }
 
 .display-min-height {
-  min-height: 600px;
+    min-height: 600px;
 }
 
 /* ボタンをクリックした時に表示される枠線を消す */
 .border-none:focus {
-	outline:0;
+    outline: 0;
 }
 
 .form-auth-card-header {
-  background-color: rgb(0, 110, 255);
-  color: #fff;
-  text-align: center;
+    background-color: rgb(0, 110, 255);
+    color: #fff;
+    text-align: center;
 }
 
 .required {
-  margin-left: 5px;
-  color: #ff6347;
+    margin-left: 5px;
+    color: #ff6347;
 }
 
 /* nav bar */
 .navbar-back-color {
-  background-color: #f29500;
+    background-color: #f29500;
 }
 
 /* Google map */
 #map {
-  height: 80%;
-  width: 800px;
-  margin: auto;
-  margin-bottom: 80px;
+    height: 80%;
+    width: 800px;
+    margin: auto;
+    margin-bottom: 80px;
 }
 
 html,
 body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .gmap-wrap {
-  max-width: 800px;
-  margin: auto;
+    max-width: 800px;
+    margin: auto;
 }
 
 .hukidashi {
-  width: 310px;
-  max-height: 700px;
+    width: 310px;
+    max-height: 700px;
 }
 
 .hukidashi-img {
-  width: 300px;
-  height: 200px;
+    width: 300px;
+    height: 200px;
 }
 
 .prefecture-img {
-  width: 100%;
-  height: 80px;
+    width: 100%;
+    height: 80px;
 }
 
 .padding-none {
-  padding: 0px;
+    padding: 0px;
 }
 
 .restaurant-img {
-  width: 300px;
-  height: 200px;
+    width: 300px;
+    height: 200px;
 }
 
 
-.avatar-img, .avatar-img-preview {
-  border-radius: 100%;
-  width: 300px;
-  height: 300px;
+.avatar-img,
+.avatar-img-preview {
+    border-radius: 100%;
+    width: 300px;
+    height: 300px;
 }
 
 .avatar-img-icon {
-  border-radius: 100%;
-  width: 30px;
-  height: 30px;
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
 }
 
 .image-form-btn {
-  cursor: pointer;
-  color: white;
-  background-color: #f29500;
-  padding: 6px;
-  border-radius: 12px;
+    cursor: pointer;
+    color: white;
+    background-color: #f29500;
+    padding: 6px;
+    border-radius: 12px;
 }
 
 .restaurant-img-preview {
-  width: 390px;
-  height: 260px;
+    width: 390px;
+    height: 260px;
 }
 
 .mb-50 {
-  margin-bottom: 50px;
+    margin-bottom: 50px;
 }
+
 .gm-style-iw {
-  max-width: 400px !important;
+    max-width: 400px !important;
 }
 
 /* ログインフォーム（ここから） */
 .group {
-  position:relative;
-  padding-left: 10px;
-  margin-bottom:45px;
+    position: relative;
+    padding-left: 10px;
+    margin-bottom: 45px;
 }
+
 .auth-input {
-  font-size:18px;
-  padding:10px 10px 10px 5px;
-  display:block;
-  width:700px;
-  border:none;
-  border-bottom:1px solid #757575;
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: 700px;
+    border: none;
+    border-bottom: 1px solid #757575;
 }
+
 .auth-input:focus {
-  outline:none;
+    outline: none;
 }
 
 
 .auth-label {
-  color:#999;
-  font-size:18px;
-  font-weight:normal;
-  position:absolute;
-  pointer-events:none;
-  left:30px;
-  top:10px;
-  transition:0.2s ease all; 
-  -moz-transition:0.2s ease all; 
-  -webkit-transition:0.2s ease all;
+    color: #999;
+    font-size: 18px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 30px;
+    top: 10px;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
 }
 
-.auth-input:focus ~ .auth-label, .auth-input:valid ~ .auth-label {
-  top:-20px;
-  font-size:14px;
-  color:#5264AE;
+.auth-input:focus~.auth-label,
+.auth-input:valid~.auth-label {
+    top: -20px;
+    font-size: 14px;
+    color: #5264AE;
 }
 
-.auth-input:focus ~ .bar:before, .auth-input:focus ~ .bar:after {
-  width:50%;
+.auth-input:focus~.bar:before,
+.auth-input:focus~.bar:after {
+    width: 50%;
 }
 
 .highlight {
-  position:absolute;
-  height:60%; 
-  width:100px; 
-  top:25%; 
-  left:0;
-  pointer-events:none;
-  opacity:0.5;
+    position: absolute;
+    height: 60%;
+    width: 100px;
+    top: 25%;
+    left: 0;
+    pointer-events: none;
+    opacity: 0.5;
 }
 
 #contact-textarea {
-  width: 700px;
-  height: 300px;
-  padding: 20px;
+    width: 700px;
+    height: 300px;
+    padding: 20px;
 }
 
 /* ログインフォーム（ここまで） */
 
 @media screen and (max-width: 640px) {
-  #map {
-      width: 90%;
-  }
-  .hukidashi-img {
-      width: 180px;
-      height: 120px;
-  }
+    #map {
+        width: 90%;
+    }
 
-  .restaurant-img-preview {
-    width: 240px;
-    height: 160px;
-  }
+    .hukidashi-img {
+        width: 180px;
+        height: 120px;
+    }
 
-  .hukidashi {
-      width: 180px;
-      max-height: 500px;
-  }
+    .restaurant-img-preview {
+        width: 240px;
+        height: 160px;
+    }
 
-  .avatar-img-preview {
-    width: 220px;
-    height: 220px;
-    text-align: center;
-  }
+    .hukidashi {
+        width: 180px;
+        max-height: 500px;
+    }
 
-  .display-none-sp {
-    display: none;
-  }
+    .avatar-img-preview {
+        width: 220px;
+        height: 220px;
+        text-align: center;
+    }
 
-  .auth-input {
-    width: 300px;
-  }
+    .display-none-sp {
+        display: none;
+    }
 
-  #contact-textarea {
-    width: 300px;
-  }
+    .auth-input {
+        width: 300px;
+    }
+
+    #contact-textarea {
+        width: 300px;
+    }
 
 }

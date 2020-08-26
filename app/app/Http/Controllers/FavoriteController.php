@@ -30,9 +30,9 @@ class FavoriteController extends Controller
         $favorite_id = $this->favorite->getFavoriteId($user_id, $restaurant_id)->id;
 
         return response()->json([
-                "favorite_count" => $favorite_count,
-                "favorite_id" => $favorite_id]
-            );
+            "favorite_count" => $favorite_count,
+            "favorite_id" => $favorite_id]
+        );
     }
 
     // いいね解除
@@ -50,8 +50,8 @@ class FavoriteController extends Controller
         $favorite_id = @$this->favorite->getFavoriteId($user_id, $restaurant_id)->id;
 
         return response()->json([
-                "favorite_count" => $favorite_count,
-                "favorite_id" => $favorite_id
-            ]);
+            "favorite_count" => $favorite_count,
+            "favorite_id" => $favorite_id,
+        ]);
     }
 }

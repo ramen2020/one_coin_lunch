@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'introduction', 'twitter_id','twitter_nickname','twitter_avator', 'profile_image'
+        'name', 'email', 'password', 'introduction', 'twitter_id', 'twitter_nickname', 'twitter_avator', 'profile_image',
     ];
 
     /**

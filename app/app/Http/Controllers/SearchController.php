@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SearchFilterRequest;
 use App\Restaurant;
 use App\Services\RestaurantService;
 use Illuminate\Http\Request;
-use App\Http\Requests\SearchFilterRequest;
 
 class SearchController extends Controller
 {
@@ -19,7 +19,8 @@ class SearchController extends Controller
     }
 
     // キーワード検索
-    public function word(Request $request) {
+    public function word(Request $request)
+    {
         $query = $request->query();
         $word = $query['word'];
         $set_restaurants = $this->restaurant->getRestaurantsByWord($word);

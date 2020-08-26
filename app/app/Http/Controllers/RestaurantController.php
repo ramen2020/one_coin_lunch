@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Restaurant;
 use App\Favorite;
-use App\Services\RestaurantService;
-use App\Http\Requests\Restaurant\StoreRestaurantRequest;
 use App\Http\Requests\Restaurant\AddRestaurantImageRequest;
+use App\Http\Requests\Restaurant\StoreRestaurantRequest;
+use App\Restaurant;
+use App\Services\RestaurantService;
 use Illuminate\Support\Facades\Storage;
 
 class RestaurantController extends Controller
@@ -27,7 +27,7 @@ class RestaurantController extends Controller
     public function newRestaurants()
     {
         $category_list = $this->category_list;
-        $restaurants = $this->restaurant->with(['user','favorites'])
+        $restaurants = $this->restaurant->with(['user', 'favorites'])
             ->orderby('restaurants.created_at', 'DESC')
             ->paginate(6);
 
@@ -40,7 +40,6 @@ class RestaurantController extends Controller
     {
         return view('top.top');
     }
-
 
     public function create()
     {
@@ -63,8 +62,8 @@ class RestaurantController extends Controller
 
         $create_restaurant = $this->restaurant_service->setCategoryId($request)
             ->createRestaurant($request);
-            return redirect()->route('restaurant.show', $create_restaurant['id'])
-                ->with('restaurant_message', '投稿しました。画像編集から画像を追加してください。');
+        return redirect()->route('restaurant.show', $create_restaurant['id'])
+            ->with('restaurant_message', '投稿しました。画像編集から画像を追加してください。');
     }
 
     public function edit($id)
@@ -77,7 +76,7 @@ class RestaurantController extends Controller
     {
         $set_restaurant = $this->restaurant_service->getRestaurantById($restaurant_id);
 
-        if($set_restaurant['user_id'] != \Auth::id()) {
+        if ($set_restaurant['user_id'] != \Auth::id()) {
             return redirect('/');
         }
 
@@ -109,7 +108,7 @@ class RestaurantController extends Controller
     public function favoriteList()
     {
         $user_id = \Auth::id();
-        $restaurants = $this->restaurant->whereHas('favorites', function($query) use ($user_id) {
+        $restaurants = $this->restaurant->whereHas('favorites', function ($query) use ($user_id) {
             $query->where('user_id', $user_id);
         })->with(['user', 'favorites'])->get();
         $restaurants = $this->restaurant_service->addFavoriteIdToRestaurants($restaurants);
@@ -122,14 +121,14 @@ class RestaurantController extends Controller
         $request_user_id = $restaurant->user->id;
         $user_id = \Auth::id();
 
-        if($request_user_id === $user_id) {
+        if ($request_user_id === $user_id) {
             $restaurant = $this->restaurant->find($restaurant_id);
             $restaurant->favorites()->delete();
-            if(!empty($restaurant->image_name) &&
+            if (!empty($restaurant->image_name) &&
                 $restaurant->image_name !== config('data.no_image_photo')[1]) {
-                    $image_name = basename($restaurant->image_name);
-                    $image_path = "/restaurant-images/" .$image_name;
-                    Storage::disk('s3')->delete($image_path);
+                $image_name = basename($restaurant->image_name);
+                $image_path = "/restaurant-images/" . $image_name;
+                Storage::disk('s3')->delete($image_path);
             }
             $restaurant->delete();
         }

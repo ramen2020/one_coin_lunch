@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use App\Services\RestaurantService;
 use App\Http\Requests\AddUserImageRequest;
 use App\Http\Requests\UpdateUserProfileRequest;
+use App\Services\RestaurantService;
+use App\User;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller

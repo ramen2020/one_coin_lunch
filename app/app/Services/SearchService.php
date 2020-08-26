@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Restaurant;
 use Illuminate\Support\Facades\DB;
 
 class SearchService
