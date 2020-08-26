@@ -1,5 +1,0 @@
-{
-    "require": {
-        "laravel/socialite": "^4.4"
-    }
-}
