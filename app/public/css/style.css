@@ -11,6 +11,12 @@
 	outline:0;
 }
 
+.form-auth-card-header {
+  background-color: rgb(0, 110, 255);
+  color: #fff;
+  text-align: center;
+}
+
 .required {
   margin-left: 5px;
   color: #ff6347;
@@ -97,6 +103,60 @@ body {
 .gm-style-iw {
   max-width: 400px !important;
 }
+
+/* ログインフォーム（ここから） */
+.group {
+  position:relative;
+  padding-left: 10px;
+  margin-bottom:45px;
+}
+.auth-input {
+  font-size:18px;
+  padding:10px 10px 10px 5px;
+  display:block;
+  width:300px;
+  border:none;
+  border-bottom:1px solid #757575;
+}
+.auth-input:focus {
+  outline:none;
+}
+
+
+.auth-label {
+  color:#999;
+  font-size:18px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:30px;
+  top:10px;
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+
+.auth-input:focus ~ .auth-label, .auth-input:valid ~ .auth-label {
+  top:-20px;
+  font-size:14px;
+  color:#5264AE;
+}
+
+.auth-input:focus ~ .bar:before, .auth-input:focus ~ .bar:after {
+  width:50%;
+}
+
+.highlight {
+  position:absolute;
+  height:60%; 
+  width:100px; 
+  top:25%; 
+  left:0;
+  pointer-events:none;
+  opacity:0.5;
+}
+
+/* ログインフォーム（ここまで） */
 
 @media screen and (max-width: 640px) {
   #map {
