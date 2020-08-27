@@ -10,29 +10,11 @@
     </v-card-title>
     <v-card-subtitle>{{ restaurant.low_budget }}円~{{ restaurant.high_budget }}円</v-card-subtitle>
     <v-card-text class="text--primary">
-        <div>{{ restaurant.address }}</div>
-        <div><a v-bind:href="`/user/profile/${restaurant.user.id}`">{{ restaurant.user.name }}</a></div>
-        <div class="pl-10">
-          <div v-if="userId">
-            <div v-if="restaurant.is_favorite">
-              <favorite-component :user-id="userId" :restaurant-id="restaurant.id" :favorite-id="restaurant.favorite_id_by_auth" :favorite-count="restaurant.favorites.length"></favorite-component>
-            </div>
-            <div v-else>
-              <favorite-component :user-id="userId" :restaurant-id="restaurant.id" :favorite-count="restaurant.favorites.length"></favorite-component>
-            </div>
-          </div>
-          <div v-else>
-            <div class="d-flex justify-content-end mt-3">
-              <v-icon color="red" class="material-icons mr-2">
-                favorite
-              </v-icon>{{ restaurant.favorites.length }}
-            </div>
-          </div>
-        </div>
-    </v-card-text>
-
-    <v-card-actions>
-      <div class="pl-3">
+      <div>{{ restaurant.address }}</div>
+      <div class="text-right">
+        <a v-bind:href="`/user/profile/${restaurant.user.id}`">{{ restaurant.user.name }}</a>
+      </div>
+      <div class="pt-5">
         <v-btn v-if=restaurant.category_id_1 color="warning" class="ma-1" v-bind:href="`/category/search/${restaurant.category_id_1 }`">
             {{ categoryList[0][ restaurant.category_id_1 ] }}
         </v-btn>
@@ -53,8 +35,25 @@
             {{ categoryList[0][ restaurant.category_id_5 ] }}
         </v-btn>
       </div>
+      <div class="pl-9">
+          <div v-if="userId">
+            <div v-if="restaurant.is_favorite">
+              <favorite-component :user-id="userId" :restaurant-id="restaurant.id" :favorite-id="restaurant.favorite_id_by_auth" :favorite-count="restaurant.favorites.length"></favorite-component>
+            </div>
+            <div v-else>
+              <favorite-component :user-id="userId" :restaurant-id="restaurant.id" :favorite-count="restaurant.favorites.length"></favorite-component>
+            </div>
+          </div>
+          <div v-else>
+            <div class="d-flex justify-content-end mt-3">
+              <v-icon color="red" class="material-icons mr-2">
+                favorite
+              </v-icon>{{ restaurant.favorites.length }}
+            </div>
+          </div>
+        </div>
       <v-spacer></v-spacer>
-    </v-card-actions>
+    </v-card-text>
   </v-card>
 </div>
 </template>

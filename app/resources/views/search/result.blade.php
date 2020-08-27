@@ -36,7 +36,7 @@
                                     <div class="text-right">
                                         <a href="{{ route('user.profile', $restaurant->user->id) }}">{{ $restaurant->user->name }}</a>
                                     </div>
-                                    <div>
+                                    <div class="pt-5">
                                         @if(!empty($restaurant['category_id_1']))
                                             <v-btn color="warning" href="{{ route('search.category', $restaurant['category_id_1']) }}"
                                                 class="m-1">{{ config('data.category')[$restaurant['category_id_1']] }}</v-btn>
@@ -58,7 +58,7 @@
                                                 class="m-1">{{ config('data.category')[$restaurant['category_id_5']] }}</v-btn>
                                         @endif
                                     </div>
-                                    <div class="d-flex justify-content-end">
+                                    <div class="pl-9">
                                         @if (Auth::user())
                                             @if ($restaurant['is_favorite'])
                                                 <favorite-component :user-id='{{ Auth::id() }}' :restaurant-id="{{ $restaurant['id'] }}"

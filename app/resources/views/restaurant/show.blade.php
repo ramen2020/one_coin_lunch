@@ -30,17 +30,7 @@
                     {{ $restaurant['city'] }}
                     {{ $restaurant['street_address'] }}
                 </div>
-                <div class="pl-10">
-                    @if (!$favorite_id)
-                        <favorite-component :user-id='{{ Auth::id() }}' :restaurant-id="{{ $restaurant->id }}" favorite-count="{{ count($restaurant->favorites) }}"></favorite-component>
-                    @else
-                        <favorite-component :user-id='{{ Auth::id() }}' :restaurant-id="{{ $restaurant->id }}" :favorite-id="{{ $favorite_id }}" :favorite-count="{{ count($restaurant->favorites) }}"></favorite-component>
-                    @endif
-                </div>
-            </v-card-text>
-
-            <v-card-actions>
-                <div class="px-3">
+                <div class="pt-5">
                     @if(!empty($restaurant['category_id_1']))
                         <v-btn class="ma-1" color="warning" href="{{ route('search.category', $restaurant['category_id_1']) }}">{{ config('data.category')[$restaurant['category_id_1']] }}</v-btn>
                     @endif
@@ -57,8 +47,15 @@
                         <v-btn class="ma-1" color="warning" href="{{ route('search.category', $restaurant['category_id_5']) }}">{{ config('data.category')[$restaurant['category_id_5']] }}</v-btn>
                     @endif
                 </div>
+                <div class="pl-9">
+                    @if (!$favorite_id)
+                        <favorite-component :user-id='{{ Auth::id() }}' :restaurant-id="{{ $restaurant->id }}" favorite-count="{{ count($restaurant->favorites) }}"></favorite-component>
+                    @else
+                        <favorite-component :user-id='{{ Auth::id() }}' :restaurant-id="{{ $restaurant->id }}" :favorite-id="{{ $favorite_id }}" :favorite-count="{{ count($restaurant->favorites) }}"></favorite-component>
+                    @endif
+                </div>
                 <v-spacer></v-spacer>
-            </v-card-actions>
+                </v-card-text>
 
             <v-expand-transition>
                 <div>

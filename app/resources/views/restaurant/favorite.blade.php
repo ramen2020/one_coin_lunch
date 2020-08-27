@@ -49,7 +49,7 @@
                                                 class="m-1">{{ config('data.category')[$restaurant['category_id_5']] }}</v-btn>
                                         @endif
                                     </div>
-                                    <div class="d-flex justify-content-end">
+                                    <div class="pl-9">
                                         @if ($restaurant['is_favorite'])
                                             <favorite-component :user-id='{{ Auth::id() }}' :restaurant-id="{{ $restaurant['id'] }}"
                                                 :favorite-id="{{ $restaurant['favorite_id_by_auth'] }}" :favorite-count="{{ count($restaurant['favorites']) }}">
