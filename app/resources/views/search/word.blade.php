@@ -3,16 +3,18 @@
 @section('content')
 
 <div class="container">
-
-    <h1 class="mt-4 mb-3">ワンコインランチ
-        <small>近くのワンコインランチを探そう</small>
-    </h1>
-
+    <div class="mb-100">
+        <h1 class="mt-4 pb-4 text-center border-bottom">
+            ワード検索
+        </h1>
+    </div>
+    <div>
+            {!! Form::open(['route' => 'search.word', 'method' => 'GET', 'class' => 'input-group mb-5']) !!}
     <div class="row">
-        {!! Form::open(['route' => 'search.word', 'method' => 'GET', 'class' => 'input-group mb-5']) !!}
-            {!! Form::input('text', 'word', null, ['class' => 'border-secondary form-control', 'placeholder' => '店舗名とか場所とか...']) !!}
-            {!! Form::button('検索', ['class' => 'btn border-secondary', 'type' => 'submit'])!!}
-        {!! Form::close() !!}
+        {!! Form::input('text', 'word', null, ['class' => 'border-secondary border col-10 offset-2 mx-auto mb-12', 'placeholder' => '店舗名とか場所とか...']) !!}
+        {!! Form::button('<i class="fas fa-search pr-2"></i>検索する', ['class' => "btn border col-6 offset-6 mx-auto mt-12", 'type' => 'submit']) !!}
+    </div>
+    {!! Form::close() !!}
     </div>
 
 </div>
