@@ -15,6 +15,15 @@
 ***
 <br>
 
+## クラウドアーキテクチャー
+<br>
+<img src="./cloud-architecture.png" alt="エビフライトライアングル" title="サンプル">
+
+
+
+***
+<br>
+
 ## 開発環境
 * フロントエンド
   * JavaScript
