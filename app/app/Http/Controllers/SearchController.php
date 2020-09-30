@@ -52,7 +52,7 @@ class SearchController extends Controller
         return view('search.result', compact('restaurants'));
     }
 
-    // 都道府県から検索
+    // カテゴリから検索
     public function filterByCategory($category_id)
     {
         $set_restaurants = $this->restaurant->getRestaurantsByCategory($category_id);
