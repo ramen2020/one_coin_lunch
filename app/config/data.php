@@ -112,5 +112,39 @@ return [
 
     'no_image_photo' => [
         1 => env('NO_IMAGE_PHOTO'),
+    ],
+
+    // topページの「都道府県から探す」に表示する項目
+    'top_prefecture' => [
+        1 => [
+            'prefecture' => '大阪',
+            'prefecture_en' => 'osaka',
+            'prefecture_number' => 27,
+        ],
+        2 => [
+            'prefecture' => '東京',
+            'prefecture_en' => 'tokyo',
+            'prefecture_number' => 13,
+        ],
+        3 => [
+            'prefecture' => '千葉',
+            'prefecture_en' => 'tiba',
+            'prefecture_number' => 12,
+        ],
+        4 => [
+            'prefecture' => '京都',
+            'prefecture_en' => 'kyoto',
+            'prefecture_number' => 26,
+        ],
+        5 => [
+            'prefecture' => '愛知',
+            'prefecture_en' => 'aichi',
+            'prefecture_number' => 23,
+        ],
+        6 => [
+            'prefecture' => '福岡',
+            'prefecture_en' => 'hakata',
+            'prefecture_number' => 40,
+        ],
     ]
 ];
