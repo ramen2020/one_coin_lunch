@@ -108,10 +108,10 @@ class RestaurantController extends Controller
     public function favoriteList()
     {
         $user_id = \Auth::id();
-        $restaurants = $this->restaurant->whereHas('favorites', function ($query) use ($user_id) {
+        $set_restaurants = $this->restaurant->whereHas('favorites', function ($query) use ($user_id) {
             $query->where('user_id', $user_id);
         })->with(['user', 'favorites'])->get();
-        $restaurants = $this->restaurant_service->addFavoriteIdToRestaurants($restaurants);
+        $restaurants = $this->restaurant_service->addFavoriteIdToRestaurants($set_restaurants);
         return view('restaurant.favorite', compact('restaurants'));
     }
 
