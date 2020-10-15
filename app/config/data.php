@@ -145,5 +145,29 @@ return [
             'prefecture_en' => 'hakata',
             'prefecture_number' => 40,
         ],
+    ],
+
+    // topページの「カテゴリから探す」に表示する項目
+    'top_categories' => [
+        1 => [
+            'category' => 'カフェ',
+            'category_file_name' => 'cafe.png',
+            'category_number' => 13,
+        ],
+        2 => [
+            'category' => 'ハンバーガー',
+            'category_file_name' => 'humberger.png',
+            'category_number' => 12,
+        ],
+        3 => [
+            'category' => 'イタリアン',
+            'category_file_name' => 'italian.jpg',
+            'category_number' => 4,
+        ],
+        4 => [
+            'category' => 'カレー',
+            'category_file_name' => 'carry.png',
+            'category_number' => 6,
+        ],
     ]
 ];
