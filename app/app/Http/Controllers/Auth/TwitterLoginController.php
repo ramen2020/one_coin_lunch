@@ -18,7 +18,8 @@ class TwitterLoginController extends Controller
     public function handleProviderCallback()
     {
         try {
-            $twitter_user = Socialite::driver('twitter')->user();
+            $twitter_user = Socialite::driver('twitter')
+                ->userFromTokenAndSecret(env('TWITTER_ACCESS_TOKEN'), env('TWITTER_ACCESS_TOKEN_SECRET'));
             $user = $this->checkUserRegister($twitter_user);
             \Auth::login($user);
         } catch (\Exception $e) {
