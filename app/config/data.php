@@ -58,7 +58,6 @@ return [
         1000 => 1000,
     ],
 
-
     // 都道府県
     'prefecture' => [
         1 => '北海道',
@@ -115,7 +114,7 @@ return [
     ],
 
     // topページの「都道府県から探す」に表示する項目
-    'top_prefecture' => [
+    'top_prefectures' => [
         1 => [
             'prefecture' => '大阪',
             'prefecture_en' => 'osaka',
