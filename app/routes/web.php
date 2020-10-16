@@ -94,6 +94,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/show/{restaurant_id}', 'RestaurantController@show')->name('restaurant.show');
         // お気に入りしている店舗
         Route::get('/favoriteList', 'RestaurantController@favoriteList')->name('restaurant.favoriteList');
+        // 店舗の人気ランキング
+        Route::get('/favoriteRank', 'RestaurantController@favoriteRank')->name('restaurant.favoriteRank');
     });
 
     // プロフィールについて

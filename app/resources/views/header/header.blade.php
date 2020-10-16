@@ -52,6 +52,7 @@
                         ランチ検索
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                        <a class="dropdown-item" href='/restaurant/favoriteRank'>人気ランキング</a>
                         <a class="dropdown-item" href='/filter'>絞り込む</a>
                         <a class="dropdown-item" href='/map'>地図で探す</a>
                         <a class="dropdown-item" href='/word'>ワード検索</a>

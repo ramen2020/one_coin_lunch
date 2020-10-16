@@ -115,6 +115,14 @@ class RestaurantController extends Controller
         return view('restaurant.favorite', compact('restaurants'));
     }
 
+    public function favoriteRank()
+    {
+        $set_restaurants = $this->restaurant->withCount('favorites')
+            ->orderBy('favorites_count', 'desc')->limit(10)->get();
+        $restaurants = $this->restaurant_service->addFavoriteRankNumber($set_restaurants);
+        return view('restaurant.favoriteRank', compact('restaurants'));
+    }
+
     public function destroy($restaurant_id, $user_id)
     {
         $restaurant = $this->restaurant->with('user:id')->find($restaurant_id);

@@ -117,4 +117,15 @@ class RestaurantService
         return;
     }
 
+    // 人気ランキングの順位を付与する
+    public function addFavoriteRankNumber($restaurants)
+    {
+        $ranking = 1;
+        foreach($restaurants as $restaurant) {
+            $restaurant['favorite_rank'] = $ranking;
+            $ranking++;
+        }
+        return $restaurants;
+    }
+
 }
