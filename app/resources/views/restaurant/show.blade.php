@@ -29,6 +29,9 @@
                     {{ config('data.prefecture')[$restaurant['prefecture_id']] }}
                     {{ $restaurant['city'] }}
                     {{ $restaurant['street_address'] }}
+                    <div class="text-right">
+                        <a href="/user/profile/{{ $restaurant->user->id }}">{{ $restaurant->user->name }}</a>
+                    </div>
                 </div>
                 <div class="pt-5">
                     @if(!empty($restaurant['category_id_1']))

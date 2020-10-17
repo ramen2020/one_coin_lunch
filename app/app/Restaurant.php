@@ -45,6 +45,7 @@ class Restaurant extends Model
     public static function getRestaurantById($id)
     {
         return self::where(self::RESTAURANT_TABLE . '.id', $id)
+            ->with(['user'])
             ->first();
     }
 
