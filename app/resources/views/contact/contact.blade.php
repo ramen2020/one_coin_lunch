@@ -4,12 +4,6 @@
 
 <div class="container">
     <div class="row">
-        <div class="border-bottom col-md-12">
-                <h3>Register<h3>
-            </div>
-        </div>
-    </div>
-    <div class="row">
         <div class="mx-auto">
             <div class="py-12">
             <h3 class="mb-12">お問い合わせ</h3>
