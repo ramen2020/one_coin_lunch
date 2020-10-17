@@ -147,8 +147,8 @@ return [
         ],
     ],
 
-    // topページの「カテゴリから探す」に表示する項目
-    'top_categories' => [
+    // topページの「カテゴリから探す」に表示する項目（画像付き）
+    'top_big_categories' => [
         1 => [
             'category' => 'カフェ',
             'category_file_name' => 'cafe.png',
@@ -169,5 +169,56 @@ return [
             'category_file_name' => 'carry.png',
             'category_number' => 6,
         ],
-    ]
+    ],
+    // topページの「カテゴリから探す」に表示する項目(ボタン)
+    'top_small_categories' => [
+        1 => [
+            'category' => '和食',
+            'category_number' => 1,
+        ],
+        2 => [
+            'category' => '中華料理',
+            'category_number' => 2,
+        ],
+        3 => [
+            'category' => 'フレンチ',
+            'category_number' => 3,
+        ],
+        4 => [
+            'category' => 'そば・うどん',
+            'category_number' => 5,
+        ],
+        5 => [
+            'category' => 'パン・サンドイッチ',
+            'category_number' => 7,
+        ],
+        6 => [
+            'category' => '海鮮料理',
+            'category_number' => 8,
+        ],
+        7 => [
+            'category' => '鉄板料理',
+            'category_number' => 9,
+        ],
+        8 => [
+            'category' => 'お肉',
+            'category_number' => 10,
+        ],
+        9 => [
+            'category' => '韓国料理',
+            'category_number' => 11,
+        ],
+        10 => [
+            'category' => '居酒屋',
+            'category_number' => 14,
+        ],
+        11 => [
+            'category' => 'ラーメン',
+            'category_number' => 15,
+        ],
+        12 => [
+            'category' => '寿司',
+            'category_number' => 16,
+        ],
+    ],
 ];
