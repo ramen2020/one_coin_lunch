@@ -118,32 +118,32 @@ return [
         1 => [
             'prefecture' => '大阪',
             'prefecture_en' => 'osaka',
-            'prefecture_number' => 27,
+            'prefecture_id' => 27,
         ],
         2 => [
             'prefecture' => '東京',
             'prefecture_en' => 'tokyo',
-            'prefecture_number' => 13,
+            'prefecture_id' => 13,
         ],
         3 => [
             'prefecture' => '千葉',
             'prefecture_en' => 'tiba',
-            'prefecture_number' => 12,
+            'prefecture_id' => 12,
         ],
         4 => [
             'prefecture' => '京都',
             'prefecture_en' => 'kyoto',
-            'prefecture_number' => 26,
+            'prefecture_id' => 26,
         ],
         5 => [
             'prefecture' => '愛知',
             'prefecture_en' => 'aichi',
-            'prefecture_number' => 23,
+            'prefecture_id' => 23,
         ],
         6 => [
             'prefecture' => '福岡',
             'prefecture_en' => 'hakata',
-            'prefecture_number' => 40,
+            'prefecture_id' => 40,
         ],
     ],
 
@@ -152,73 +152,73 @@ return [
         1 => [
             'category' => 'カフェ',
             'category_file_name' => 'cafe.png',
-            'category_number' => 13,
+            'category_id' => 13,
         ],
         2 => [
             'category' => 'ハンバーガー',
             'category_file_name' => 'humberger.png',
-            'category_number' => 12,
+            'category_id' => 12,
         ],
         3 => [
             'category' => 'イタリアン',
             'category_file_name' => 'italian.jpg',
-            'category_number' => 4,
+            'category_id' => 4,
         ],
         4 => [
             'category' => 'カレー',
             'category_file_name' => 'carry.png',
-            'category_number' => 6,
+            'category_id' => 6,
         ],
     ],
     // topページの「カテゴリから探す」に表示する項目(ボタン)
     'top_small_categories' => [
         1 => [
             'category' => '和食',
-            'category_number' => 1,
+            'category_id' => 1,
         ],
         2 => [
             'category' => '中華料理',
-            'category_number' => 2,
+            'category_id' => 2,
         ],
         3 => [
             'category' => 'フレンチ',
-            'category_number' => 3,
+            'category_id' => 3,
         ],
         4 => [
             'category' => 'そば・うどん',
-            'category_number' => 5,
+            'category_id' => 5,
         ],
         5 => [
             'category' => 'パン・サンドイッチ',
-            'category_number' => 7,
+            'category_id' => 7,
         ],
         6 => [
             'category' => '海鮮料理',
-            'category_number' => 8,
+            'category_id' => 8,
         ],
         7 => [
             'category' => '鉄板料理',
-            'category_number' => 9,
+            'category_id' => 9,
         ],
         8 => [
             'category' => 'お肉',
-            'category_number' => 10,
+            'category_id' => 10,
         ],
         9 => [
             'category' => '韓国料理',
-            'category_number' => 11,
+            'category_id' => 11,
         ],
         10 => [
             'category' => '居酒屋',
-            'category_number' => 14,
+            'category_id' => 14,
         ],
         11 => [
             'category' => 'ラーメン',
-            'category_number' => 15,
+            'category_id' => 15,
         ],
         12 => [
             'category' => '寿司',
-            'category_number' => 16,
+            'category_id' => 16,
         ],
     ],
 ];
