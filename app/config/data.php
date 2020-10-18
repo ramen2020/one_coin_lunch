@@ -113,8 +113,8 @@ return [
         1 => env('NO_IMAGE_PHOTO'),
     ],
 
-    // topページの「都道府県から探す」に表示する項目
-    'top_prefectures' => [
+    // topページの「都道府県から探す」に表示する項目（画像付き）
+    'top_big_prefectures' => [
         1 => [
             'prefecture' => '大阪',
             'prefecture_en' => 'osaka',
@@ -144,6 +144,46 @@ return [
             'prefecture' => '福岡',
             'prefecture_en' => 'hakata',
             'prefecture_id' => 40,
+        ],
+    ],
+
+    // ６地方区分
+    'region' => [
+        1 => [
+            'area' => '北海道・東北',
+            'area_prefecture_id' => [
+                1, 2, 3, 4, 5, 6, 7,
+            ],
+        ],
+        2 => [
+            'area' => '関東',
+            'area_prefecture_id' => [
+                8, 9, 10, 11, 12, 13, 14,
+            ],
+        ],
+        3 => [
+            'area' => '中部',
+            'area_prefecture_id' => [
+                15, 16, 17, 18 ,19, 20, 21, 22, 23, 24,
+            ],
+        ],
+        4 => [
+            'area' => '関西',
+            'area_prefecture_id' => [
+                25, 26, 27, 28, 29, 30,
+            ],
+        ],
+        5 => [
+            'area' => '中国・四国',
+            'area_prefecture_id' => [
+                31, 32, 33, 34, 35, 36, 37, 38, 39,
+            ],
+        ],
+        6 => [
+            'area' => '九州・沖縄',
+            'area_prefecture_id' => [
+                40, 41, 42, 43, 44, 45, 46,
+            ],
         ],
     ],
 

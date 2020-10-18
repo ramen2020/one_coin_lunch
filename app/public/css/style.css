@@ -172,6 +172,10 @@ body {
     padding: 20px;
 }
 
+.top_prefecture_region {
+    font-weight: bold;
+}
+
 /* ログインフォーム（ここまで） */
 
 @media screen and (max-width: 640px) {
