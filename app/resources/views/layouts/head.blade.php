@@ -14,6 +14,7 @@
     <meta property="og:site_name" content="サイト名">
     <link rel="shortcut icon" href="{{ asset('/favicon.ico') }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700&display=swap" rel="stylesheet">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Scripts -->

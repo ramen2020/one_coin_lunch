@@ -42,6 +42,13 @@ body {
     padding: 0;
 }
 
+#app-title {
+    font-size: 40px;
+    color: #f19e18;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    text-align: center;
+}
+
 .gmap-wrap {
     max-width: 800px;
     margin: auto;
