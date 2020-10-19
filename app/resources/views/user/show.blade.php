@@ -31,7 +31,7 @@
                 @if(Auth::id() !== 1)
                     <div>
                         {{ Form::open(['route' => 'user.delete', 'method' => 'delete']) }}
-                            {!! Form::button('退会する', ['class' => 'btn btn-danger mt-3', 'type' => 'submit'])!!}
+                            {{ Form::button('退会する', ['class' => 'btn btn-danger mt-3', 'type' => 'submit']) }}
                         {{ Form::close() }}
                     </div>
                 @endif

@@ -22,10 +22,10 @@
                 <div class="control-group form-group">
                     <label>お問い合わせ内容</label><span class="required">※</span>
                     @error('content')<span class="required">{{ $message }}</span>@enderror
-                    {!! Form::textarea('content', $contact_content['content'], ['class' => 'form-control', 'readonly']) !!}
+                    {{ Form::textarea('content', $contact_content['content'], ['class' => 'form-control', 'readonly']) }}
                 </div>
-                {!! Form::submit('この内容で送信', ['name' => 'submit', 'class' => 'btn btn-success']) !!}
-                {!! Form::submit('戻る', ['name' => 'submit', 'class' => 'btn btn-secondary']) !!}
+                {{ Form::submit('この内容で送信', ['name' => 'submit', 'class' => 'btn btn-success']) }}
+                {{ Form::submit('戻る', ['name' => 'submit', 'class' => 'btn btn-secondary']) }}
             {{ Form::close() }}
         </div>
 

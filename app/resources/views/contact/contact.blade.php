@@ -7,7 +7,7 @@
         <div class="mx-auto">
             <div class="py-12">
             <h3 class="mb-12">お問い合わせ</h3>
-            {!! Form::open(['route' => 'contact.confirm', 'method' => 'post']) !!}
+            {{ Form::open(['route' => 'contact.confirm', 'method' => 'post']) }}
                 <div class="row">
                     <div class="group col-md-12">
                         {{ Form::text('name', null, ['class' => 'auth-input', 'required']) }}
@@ -49,7 +49,7 @@
 
                 <div class="row">
                     <div class="group col-md-12">
-                        {!! Form::button('確認', ['class' => 'btn btn-primary py-2 px-5', 'style' => 'width:100%;color:#fff;', 'type' => 'submit']) !!}
+                        {{ Form::button('確認', ['class' => 'btn btn-primary py-2 px-5', 'style' => 'width:100%;color:#fff;', 'type' => 'submit']) }}
                     </div>
                 </div>
             {{ Form::close() }}

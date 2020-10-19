@@ -21,7 +21,7 @@
                 </div>
                 <div class="control-group form-group">
                     <label>お問い合わせ内容</label>
-                    {!! Form::textarea('content', $contact_content['content'], ['class' => 'form-control', 'readonly']) !!}
+                    {{ Form::textarea('content', $contact_content['content'], ['class' => 'form-control', 'readonly']) }}
                 </div>
             {{ Form::close() }}
         </div>

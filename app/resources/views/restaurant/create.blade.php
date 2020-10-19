@@ -70,7 +70,7 @@
             </span>
         </div>
         <div class="text-center mt-5">
-            {!! Form::button('確認', ['class' => 'btn btn-success py-2 px-5','type' => 'submit']) !!}
+            {{ Form::button('確認', ['class' => 'btn btn-success py-2 px-5','type' => 'submit']) }}
         </div>
     {{ Form::close() }}
 

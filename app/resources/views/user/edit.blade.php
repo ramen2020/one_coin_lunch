@@ -24,7 +24,7 @@
             {{ Form::textarea('introduction', $user['introduction'], ['class' => 'form-control']) }}
         </div>
         <div class="text-center mt-5">
-            {!! Form::button('変更する', ['class' => 'btn btn-success py-2 px-5','type' => 'submit']) !!}
+            {{ Form::button('変更する', ['class' => 'btn btn-success py-2 px-5','type' => 'submit']) }}
         </div>
     {{ Form::close() }}
 </div>

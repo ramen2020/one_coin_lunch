@@ -43,7 +43,7 @@
             {{ Form::select('category_id_5', config('data.category'), null, ['class' => 'category-select display-none custom-select mb-1', 'placeholder' => '']) }}
         </div>
         <div class="text-center mt-5">
-            {!! Form::button('検索する', ['class' => 'btn btn-success py-2 px-5','type' => 'submit']) !!}
+            {{ Form::button('検索する', ['class' => 'btn btn-success py-2 px-5','type' => 'submit']) }}
         </div>
     {{ Form::close() }}
 

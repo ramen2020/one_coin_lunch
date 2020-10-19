@@ -73,7 +73,7 @@
                             </div>
                             <div>
                                 {{ Form::open(['route' => ['restaurant.delete', $restaurant['id'], Auth::id()], 'method' => 'delete']) }}
-                                    {!! Form::button('削除する', ['class' => 'btn btn-danger', 'type' => 'submit'])!!}
+                                    {{ Form::button('削除する', ['class' => 'btn btn-danger', 'type' => 'submit']) }}
                                 {{ Form::close() }}
                             </div>
                         @endif
