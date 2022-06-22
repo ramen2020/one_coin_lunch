@@ -46,7 +46,3 @@
 * GCP
   * Maps JavaScript API
 
-<br>
-
-***
-<br>
