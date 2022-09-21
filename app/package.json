@@ -28,6 +28,6 @@
     },
     "dependencies": {
         "vue-infinite-loading": "^2.4.5",
-        "vuetify": "^2.3.8"
+        "vuetify": "^2.6.10"
     }
 }
